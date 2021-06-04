@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Astrotomic\Translatable\Translatable;
 
 class SupportCategory extends Model {
     
-    use Astrotomic\Translatable\Translatable;
     use SoftDeletes;
     
     public $translatedAttributes = [
