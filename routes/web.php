@@ -29,3 +29,4 @@ $supportRoutes = function () {
 	});
 };
 Route::domain('dev-support.dentacoin.com')->group($supportRoutes);
+Route::domain('support.dentacoin.com')->group($supportRoutes);

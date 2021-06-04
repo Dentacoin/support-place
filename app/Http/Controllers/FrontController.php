@@ -37,7 +37,6 @@ use App;
 use DB;
 
 class FrontController extends BaseController {
-        dd('test');
 
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     
