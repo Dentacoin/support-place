@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class SupportQuestion extends Model {
     
-    use \Dimsav\Translatable\Translatable;
+    use Astrotomic\Translatable\Translatable;
     use SoftDeletes;
     
     public $translatedAttributes = [
