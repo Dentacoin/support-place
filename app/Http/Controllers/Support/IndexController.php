@@ -13,7 +13,6 @@ use Image;
 class IndexController extends FrontController {
 
 	public function index($locale=null) {
-		dd('test');
 		$curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_RETURNTRANSFER => 1,
