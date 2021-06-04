@@ -116,7 +116,7 @@ class FrontController extends BaseController {
             if(strpos($_SERVER['HTTP_HOST'], 'dev') !== false) {
                 $this->api_link = 'https://dev-api.dentacoin.com/api';
             } else {
-                $this->api_link = 'https://api.dentacoin.com/api';
+                $this->api_link = 'https://dev-api.dentacoin.com/api';
             }
 
             $request->attributes->add([
