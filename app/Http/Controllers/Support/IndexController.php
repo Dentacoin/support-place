@@ -49,10 +49,19 @@ class IndexController extends FrontController {
 		// 		'all_questions' => json_encode($all_questions),
 		// 	]);
   //       } else {
+
+			$all_questions = [];
+        	foreach(SupportQuestion::get() as $qs) {
+        		$all_questions[] = [
+        			'question' => $qs->question,
+        			'slug' => $qs->slug
+        		];
+        	}
+
         	return $this->ShowSupportView('index', [
         		'categories' => SupportCategory::with('questions')->get(),
                 'main_questions' => SupportQuestion::where('is_main', 1)->get(),
-                'all_questions' => json_encode(SupportQuestion::get()),
+                'all_questions' => $all_questions,
 			]);
         // }
 	}
