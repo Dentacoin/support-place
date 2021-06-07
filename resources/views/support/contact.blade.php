@@ -3,7 +3,7 @@
 @section('content')
 
 	<div class="contact-container">
-		<a href="{{ getLangUrl('support') }}" class="back">< Back</a>
+		<a href="{{ getLangUrl('/') }}" class="back">< Back</a>
 		<h2>Support form</h2>
 
 		<form class="contact-form" action="{{ getLangUrl('contact') }}" method="POST" enctype="multipart/form-data">

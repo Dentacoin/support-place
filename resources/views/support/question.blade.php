@@ -3,7 +3,7 @@
 @section('content')
 
 	<div class="question-wrapper container">
-		<a href="{{ getLangUrl('support') }}" class="back">< Back</a>
+		<a href="{{ getLangUrl('/') }}" class="back">< Back</a>
 		<h2>{{ $question->question }}</h2>
 
 		<div class="question-content">
