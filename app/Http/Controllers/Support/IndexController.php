@@ -12,10 +12,13 @@ use Validator;
 use Response;
 use Request;
 use Image;
+use App;
 
 class IndexController extends FrontController {
 
 	public function index($locale=null) {
+
+		App::setLocale('en');
 		
 		// $curl = curl_init();
   //       curl_setopt_array($curl, array(
