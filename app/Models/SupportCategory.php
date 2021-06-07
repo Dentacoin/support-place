@@ -8,7 +8,7 @@ use Astrotomic\Translatable\Translatable;
 
 class SupportCategory extends Model {
     
-    use SoftDeletes;
+    use SoftDeletes, Translatable;
     
     public $translatedAttributes = [
         'name',

@@ -8,7 +8,7 @@ use Astrotomic\Translatable\Translatable;
 
 class SupportQuestion extends Model {
     
-    use SoftDeletes;
+    use SoftDeletes, Translatable;
     
     public $translatedAttributes = [
         'question',
