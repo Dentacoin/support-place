@@ -18,35 +18,35 @@ class IndexController extends FrontController {
 
 	public function index($locale=null) {
 		
-		// $curl = curl_init();
-  //       curl_setopt_array($curl, array(
-  //           CURLOPT_RETURNTRANSFER => 1,
-  //           CURLOPT_URL => $this->api_link.'/get-suppor-info/',
-  //           CURLOPT_SSL_VERIFYPEER => 0
-  //       ));
-  //       curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-  //       $resp = json_decode(curl_exec($curl));
-  //       curl_close($curl);
+		$curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_URL => $this->api_link.'/get-suppor-info/',
+            CURLOPT_SSL_VERIFYPEER => 0
+        ));
+        curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+        $resp = json_decode(curl_exec($curl));
+        curl_close($curl);
 
-  //       if(!empty($resp) && $resp->success) {
+        if(!empty($resp) && $resp->success) {
 
-  //       	$all_questions = [];
-  //       	if(!empty($resp->data->all_questions)) {
+        	$all_questions = [];
+        	if(!empty($resp->data->all_questions)) {
 
-	 //        	foreach($resp->data->all_questions as $qs) {
-	 //        		$all_questions[] = [
-	 //        			'question' => $qs->question,
-	 //        			'slug' => $qs->slug
-	 //        		];
-	 //        	}
-  //       	}
+	        	foreach($resp->data->all_questions as $qs) {
+	        		$all_questions[] = [
+	        			'question' => $qs->question,
+	        			'slug' => $qs->slug
+	        		];
+	        	}
+        	}
 
-		// 	return $this->ShowSupportView('index', [
-		// 		'categories' => $resp->data->categories,
-		// 		'main_questions' => $resp->data->main_questions,
-		// 		'all_questions' => json_encode($all_questions),
-		// 	]);
-  //       } else {
+			return $this->ShowSupportView('index', [
+				'categories' => $resp->data->categories,
+				'main_questions' => $resp->data->main_questions,
+				'all_questions' => json_encode($all_questions),
+			]);
+        } else {
 
 			$all_questions = [];
         	foreach(SupportQuestion::get() as $qs) {
@@ -61,7 +61,7 @@ class IndexController extends FrontController {
                 'main_questions' => SupportQuestion::where('is_main', 1)->get(),
                 'all_questions' => json_encode($all_questions),
 			]);
-        // }
+        }
 	}
 
 	public function contact($locale=null) {
