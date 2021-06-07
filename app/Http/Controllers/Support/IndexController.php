@@ -61,7 +61,7 @@ class IndexController extends FrontController {
         	return $this->ShowSupportView('index', [
         		'categories' => SupportCategory::with('questions')->get(),
                 'main_questions' => SupportQuestion::where('is_main', 1)->get(),
-                'all_questions' => $all_questions,
+                'all_questions' => json_encode($all_questions),
 			]);
         // }
 	}
