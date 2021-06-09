@@ -41,7 +41,7 @@
 
 				<div id="error-file" class="alert-error" style="display: none;">The file you selected is large. Max size: 10MB.</div>
 
-				<div class="g-recaptcha" id="g-recaptcha" data-callback="sendReCaptcha" style="display: inline-block;" data-sitekey="6LfmCmEUAAAAAH20CTYH0Dg6LGOH7Ko7Wv1DZlO0"></div>
+				<div class="g-recaptcha" id="g-recaptcha" data-callback="sendReCaptcha" style="display: inline-block;" data-sitekey="6LcuCSEbAAAAALU-uPQaJMkK-wI1G-HEo2X9K3-K"></div>
 				<div class="alert-error" id="captcha-error" style="display: none;">
 					<!-- Invalid attempt. Please try again. -->
 					Please, check the checkbox for verification.

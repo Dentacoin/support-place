@@ -77,7 +77,6 @@ class IndexController extends FrontController {
                 'file' => array('required', 'file', 'mimes:'.implode(',', $all_ext), 'max:10000000'),
             ]);
 
-
             if ($validator->fails()) {
 
                 $msg = $validator->getMessageBag()->toArray();
@@ -92,34 +91,44 @@ class IndexController extends FrontController {
 
                 return Response::json( $ret );
             } else {
-            	// $captcha = false;
-	            // $cpost = [
-	            //     'secret' => env('CAPTCHA_SECRET'),
-	            //     'response' => Request::input('g-recaptcha-response'),
-	            //     'remoteip' => !empty($_SERVER["HTTP_CF_CONNECTING_IP"]) ? $_SERVER["HTTP_CF_CONNECTING_IP"] : Request::ip()
-	            // ];
-	            // $ch = curl_init('https://www.google.com/recaptcha/api/siteverify');
-	            // curl_setopt($ch, CURLOPT_HEADER, 0);
-	            // curl_setopt ($ch, CURLOPT_POST, 1);
-	            // curl_setopt ($ch, CURLOPT_POSTFIELDS, http_build_query($cpost));
-	            // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);    
-	            // curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
-	            // $response = curl_exec($ch);
-	            // curl_close($ch);
-	            // if($response) {
-	            //     $api_response = json_decode($response, true);
-	            //     if(!empty($api_response['success'])) {
-	            //         $captcha = true;
-	            //     }
-	            // }
-	            // if( !$captcha ) {
-	            //     $ret = array(
-	            //         'success' => false,
-	            //         'error_captcha' => true,
-	            //     );
 
-	            //     return Response::json( $ret );
-	            // }
+            	if(empty($this->user) && Request::input('issue') != 'login') {
+
+	                return Response::json( [
+	                	'success' => false,
+	                    'need_login' => true,
+	                ] );
+            	}
+
+            	$captcha = false;
+	            $cpost = [
+	                'secret' => env('CAPTCHA_SECRET'),
+	                'response' => Request::input('g-recaptcha-response'),
+	                'remoteip' => !empty($_SERVER["HTTP_CF_CONNECTING_IP"]) ? $_SERVER["HTTP_CF_CONNECTING_IP"] : Request::ip()
+	            ];
+	            $ch = curl_init('https://www.google.com/recaptcha/api/siteverify');
+	            curl_setopt($ch, CURLOPT_HEADER, 0);
+	            curl_setopt ($ch, CURLOPT_POST, 1);
+	            curl_setopt ($ch, CURLOPT_POSTFIELDS, http_build_query($cpost));
+	            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);    
+	            curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+	            $response = curl_exec($ch);
+	            curl_close($ch);
+
+	            if($response) {
+	                $api_response = json_decode($response, true);
+	                if(!empty($api_response['success'])) {
+	                    $captcha = true;
+	                }
+	            }
+	            if( !$captcha ) {
+	                $ret = array(
+	                    'success' => false,
+	                    'error_captcha' => true,
+	                );
+
+	                return Response::json( $ret );
+	            }
 
         		$file_extension = Request::file('file')->extension();
 

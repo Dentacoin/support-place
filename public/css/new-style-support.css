@@ -265,7 +265,7 @@ html {
   display: inline-block; }
 
 .site-content {
-  min-height: calc(100vh - 462px);
+  min-height: calc(100vh - 350px);
   overflow-x: hidden; }
 
 .alert.alert-success {
@@ -463,10 +463,7 @@ header {
         transition: all 0.2s ease; }
     header .navbar-header .header-info .user-and-price {
       text-align: right;
-      margin-right: 20px; }
-      @media screen and (max-width: 998px) {
-        header .navbar-header .header-info .user-and-price {
-          margin-right: 10px; } }
+      margin-right: 10px; }
     header .navbar-header .header-info .header-avatar img {
       border-radius: 50%; }
       @media screen and (max-width: 768px) {
@@ -797,67 +794,6 @@ footer {
           display: inline-block; } }
       footer .socials a img {
         width: 25px; }
-  footer .newsletter-register {
-    padding-top: 10px;
-    padding-bottom: 30px; }
-    footer .newsletter-register .email-field {
-      max-width: 300px;
-      margin: 0 auto;
-      font-size: 0; }
-      footer .newsletter-register .email-field #mc_embed_signup_scroll input[type='email'] {
-        min-width: 200px;
-        display: inline-block;
-        vertical-align: middle;
-        height: 40px;
-        font-size: 18px;
-        border: 1px solid #aaaaaa;
-        padding: 0 5px;
-        border-radius: 4px 0 0 4px; }
-      footer .newsletter-register .email-field #mc_embed_signup_scroll input[type='submit'] {
-        height: 40px;
-        font-size: 18px;
-        background-color: black;
-        color: white;
-        display: block;
-        width: 100%;
-        border: 0;
-        border-radius: 0 4px 4px 0;
-        cursor: pointer; }
-    footer .newsletter-register .checkbox-field {
-      max-width: 300px;
-      margin: 0 auto;
-      text-align: left;
-      padding-top: 10px; }
-      footer .newsletter-register .checkbox-field .custom-checkbox {
-        margin: 0; }
-    footer .newsletter-register .custom-checkbox-style .custom-checkbox {
-      width: 20px;
-      height: 20px;
-      border: 1px solid #bdc3c7;
-      display: inline-block;
-      vertical-align: middle;
-      background-color: white;
-      color: #00aeef;
-      font-size: 16px;
-      text-align: center;
-      line-height: 20px;
-      border-radius: 20%;
-      font-weight: bold; }
-    footer .newsletter-register .custom-checkbox-style .custom-checkbox-input {
-      display: none !important; }
-    footer .newsletter-register .custom-checkbox-style .custom-checkbox-label {
-      font-size: 18px;
-      padding-left: 7px;
-      display: inline-block;
-      vertical-align: middle;
-      cursor: pointer;
-      font-weight: normal;
-      margin: 0;
-      color: #333; }
-      footer .newsletter-register .custom-checkbox-style .custom-checkbox-label a {
-        font-size: 18px;
-        color: #333;
-        text-decoration: underline; }
   footer .footer-menu {
     padding-bottom: 30px; }
     @media screen and (max-width: 998px) {

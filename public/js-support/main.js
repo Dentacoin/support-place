@@ -42,27 +42,30 @@ jQuery(document).ready(function($){
 	});
 
     if(!dentacoin_down) {
-    	
+
+        var loginUser = function(token) {
+
+            $.ajax({
+                type: "POST",
+                url: home_url+'login',
+                data: {
+                    token: token
+                },
+                dataType: 'json',
+                success: function(ret) {
+                    window.location.href = $('#site-url').attr('url');
+                },
+                error: function(ret) {
+                    console.log('error');
+                }
+            });
+        }
+
 	    $(document).on('dentistAuthSuccessResponse', async function ( event) {
-	    	if(event.response_data.trp_ban) {
-	    		window.location.href = $('#site-url').attr('url')+lang+'/banned/';
-	    	} else {
-	    		window.location.href = $('#site-url').attr('url');
-	    	}
+            loginUser(event.response_data.token);
 	    });
 	    $(document).on('patientAuthSuccessResponse', async function ( event) {
-	    	if(event.response_data.trp_ban) {
-	    		window.location.href = $('#site-url').attr('url')+lang+'/banned/';
-	    	} else {
-
-	    		var attr = $('#site-url').attr('open-popup');
-
-				if (typeof attr !== typeof undefined && attr !== false && attr == 'invite-dentist') {
-				    window.location.href = $('#site-url').attr('url')+'?popup=invite-new-dentist-popup';
-				} else {
-					window.location.href = $('#site-url').attr('url');
-				}
-	    	}
+			loginUser(event.response_data.token);
 	    });
     }
 
@@ -127,48 +130,11 @@ jQuery(document).ready(function($){
         }
     });
 
-    if ($('.newsletter-register').length) {
-        basic.initCustomCheckboxes('.newsletter-register');
-
-        $('.newsletter-register form').on('submit', function (event) {
-            event.preventDefault();
-            var this_form_native = this;
-            var this_form = $(this_form_native);
-
-            var error = false;
-            this_form.find('.error-handle').remove();
-
-            if (!basic.validateEmail(this_form.find('input[type="email"]').val().trim())) {
-                error = true;
-                customErrorHandle(this_form.find('input[type="email"]').closest('.newsletter-field'), this_form.find('input[type="email"]').closest('.newsletter-field').attr('data-valid-message'));
-            }
-
-            if (!this_form.find('#newsletter-privacy-policy').is(':checked')) {
-                error = true;
-                customErrorHandle(this_form.find('#newsletter-privacy-policy').closest('.newsletter-field'), this_form.find('#newsletter-privacy-policy').closest('.newsletter-field').attr('data-valid-message'));
-            }
-
-            if (!error) {
-                // projectData.events.fireGoogleAnalyticsEvent('Subscribe', 'Subscribe', 'Newsletter');
-                fbq('track', 'Newsletter');
-
-                this_form_native.submit();
-
-                $('.newsletter-register form .custom-checkbox').html('');
-                $('.newsletter-register form #newsletter-privacy-policy').prop('checked', false);
-                this_form.find('input[type="email"]').val('');
-                $('.newsletter-register .form-container').append('<div class="success-handle">Thank you for signing up.</div>');
-            }
-        });
-    }
-
-    $('.custom-checkbox-input').change( function() {
-        if($(this).is(":checked")) {
-            $(this).closest('div').find('.custom-checkbox').html('✓');
-        } else {
-            $(this).closest('div').find('.custom-checkbox').html('');
+    setTimeout( function() {
+        if($('.logout-btn-parent').length) {
+            $('.logout-btn-parent a').attr('href', '/user-logout');
         }
-    });
+    }, 1000);
 
 });
 

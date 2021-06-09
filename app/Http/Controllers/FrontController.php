@@ -89,29 +89,7 @@ class FrontController extends BaseController {
 
         //$this->user = Auth::guard('web')->user();
         $this->middleware(function ($request, $next) {
-            $this->user = Auth::guard('web')->user();
-
-            if(!empty($this->user) && session('login-logged')!=$this->user->id) {
-
-                //after login actions
-
-                if(!session('login-logged')) {
-
-                    $tokenobj = $this->user->createToken('LoginToken');
-                    $tokenobj->token->platform = mb_strpos( Request::getHost(), 'vox' )!==false ? 'vox' : 'trp';
-                    $tokenobj->token->save();
-
-                    session([
-                        'login-logged' => $this->user->id,
-                        'mark-login' => mb_strpos( Request::getHost(), 'vox' )!==false ? 'DV' : 'TRP',
-                        'logged_user' => [
-                            'token' => $tokenobj->accessToken,
-                            'id' => $this->user->id,
-                            'type' => $this->user->is_dentist ? 'dentist' : 'patient',
-                        ],
-                    ]);
-                }
-            }
+            $this->user = session('user');
 
             if(strpos($_SERVER['HTTP_HOST'], 'dev') !== false) {
                 $this->api_link = 'https://dev-api.dentacoin.com/api';

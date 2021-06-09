@@ -75,18 +75,14 @@
 				<div class="header-info">
                     @if(!empty($user))
 	                    <div class="flex flex-mobile flex-center">
-	                    	
 	                    	<div class="user-and-price">
 								<p class="my-name" href="javascript:;">
-									{{ $user->getNames() }}
-								</p>
-								<p>
-									<span id="header-balance">{{ $user->getTotalBalance() }}</span> DCN  | <span id="header-usd">${{ sprintf('%.2F', $user->getTotalBalance() * $dcn_price) }}</span>
+									{{ $user->name }}
 								</p>
 							</div>
 							@if( $user->platform!='external' )
 								<a class="header-avatar" id="header-avatar" href="javascript:;" >
-									<img src="{{ $user->getImageUrl(true) }}" width="50" height="50">
+									<img src="{{ $user->thumbnail_url }}" width="50" height="50">
 								</a>
 							@endif
 	                    </div>
@@ -134,31 +130,6 @@
                         <img src="{{ url('img-support/medium-m.svg') }}"/>
                     </a>
                 </div>
-
-		        <div class="newsletter-register">
-	                <div id="mc_embed_signup" class="form-container">
-	                    <form action="https://dentacoin.us16.list-manage.com/subscribe/post?u=61ace7d2b009198ca373cb213&amp;id=993df5967d" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
-	                        <div class="newsletter-field email-field" data-valid-message="Please enter valid email address.">
-	                            <div id="mc_embed_signup_scroll">
-	                            	<div class="flex flex-mobile">
-		                                <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address">
-		                                <input type="submit" value="Sign Up" name="subscribe" id="mc-embedded-subscribe" class="button-sign-newsletter">
-		                            </div>
-	                                <input type="hidden" name="b_61ace7d2b009198ca373cb213_993df5967d" tabindex="-1" value=""> 
-	                            </div>
-	                        </div>
-	                        <div class="newsletter-field checkbox-field" data-valid-message="Please agree with our Privacy Policy.">
-	                            <div class="custom-checkbox-style module already-custom-style">
-	                            	<label for="newsletter-privacy-policy" class="custom-checkbox"></label>
-	                            	<input type="checkbox" class="custom-checkbox-input" id="newsletter-privacy-policy">
-	                            	<label class="custom-checkbox-label" for="newsletter-privacy-policy">
-	                            		I agree with <a href="https://dentacoin.com/privacy-policy" target="_blank">Privacy Policy</a>
-	                            	</label>
-	                            </div>
-	                        </div>
-	                    </form>
-		            </div>
-		        </div>
 
 		        <div class="footer-menu flex flex-mobile flex-center flex-text-center">
 		        	<a target="_blank" href="https://dentacoin.com/assets/uploads/dentacoin-company-introduction.pdf">
@@ -226,7 +197,7 @@
 					dcnGateway.init({
 						'platform' : 'dentacoin',
 						'forgotten_password_link' : 'https://account.dentacoin.com/forgotten-password?platform=dentacoin',
-						'environment' : 'staging',
+						// 'environment' : 'staging',
 					});	
 				</script>
 			@else
@@ -297,6 +268,7 @@
         
         <script type="text/javascript">
         	var lang = '{{ App::getLocale() }}';
+        	var home_url = '{{ getLangUrl("/") }}';
         	var user_id = {{ !empty($user) ? $user->id : 'null' }};
         </script>
     </body>

@@ -15,14 +15,10 @@ Route::get('custom-cookie', 						'App\Http\Controllers\SSOController@manageCust
 
 //Empty route
 $supportRoutes = function () {
-	Route::get('user-logout',							'App\Http\Controllers\Auth\AuthenticateUser@getLogout');
-	Route::post('authenticate-user',					'App\Http\Controllers\Auth\AuthenticateUser@authenticateUser');
+	Route::get('user-logout',								'App\Http\Controllers\Auth\AuthenticateUser@logout');
+	Route::post('login',									'App\Http\Controllers\Auth\AuthenticateUser@login');
 	
 	Route::group(['prefix' => '{locale?}'], function(){
-
-		Route::get('login', 									[ 'as' => 'login', 'uses' => 'App\Http\Controllers\Auth\AuthenticateUser@showLoginForm'] );
-		Route::get('logout',									'App\Http\Controllers\Auth\AuthenticateUser@getLogout');
-
 		Route::any('/', 									'App\Http\Controllers\Support\IndexController@index');
 		Route::any('contact', 								'App\Http\Controllers\Support\IndexController@contact');
 		Route::any('question/{slug}', 						'App\Http\Controllers\Support\IndexController@question');

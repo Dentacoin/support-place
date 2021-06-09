@@ -92,6 +92,9 @@ jQuery(document).ready(function($){
                     }
                 } else if(data.error_captcha) {
                     $('#captcha-error').css('display', 'block');
+                } else if(data.need_login) {
+                    $('.bottom-form').hide();
+                    $('#not-logged-error').css('display', 'block');
                 }
             }
             ajax_is_running = false;
