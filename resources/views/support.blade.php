@@ -5,7 +5,6 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi">
-        <meta name="google-site-verification" content="b0VE72mRJqqUuxWJZklHQnvRZV4zdJkDymC0RD9hPhE" />
         
         @if(!empty($noIndex))
         	<meta name="robots" content="noindex">
@@ -62,7 +61,6 @@
 		<meta name="msapplication-TileColor" content="#ffffff">
 		<meta name="msapplication-TileImage" content="{{ url('trp-fav/ms-icon-144x144.png') }}">
 		<meta name="theme-color" content="#ffffff">
-		<meta name="google-site-verification" content="EYJZsVUi75Q_McP0FuWfCOqc09pAzItF084_LvsRkcY" />
 
     </head>
 
@@ -232,16 +230,6 @@
 		@if(empty($user) && empty($_COOKIE['performance_cookies']) && empty($_COOKIE['marketing_cookies']) && empty($_COOKIE['strictly_necessary_policy']) && empty($_COOKIE['functionality_cookies']))
 			<script src="https://dentacoin.com/assets/libs/dentacoin-package/js/init.js"></script>
 			<link rel="stylesheet" type="text/css" href="https://dentacoin.com/assets/libs/dentacoin-package/css/style-cookie.css">
-
-			<script type="text/javascript">
-				if (typeof dcnCookie !== 'undefined') {
-					dcnCookie.init({
-						'google_app_id': 'UA-108398439-1',
-						'fb_app_id': '2010503399201502',
-						'second_fb_app_id': '2366034370318681',
-					});
-				}
-			</script>
 		@endif
 
 		@if(!empty( $markLogout )) 
