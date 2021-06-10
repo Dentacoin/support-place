@@ -15,53 +15,62 @@ class SSOController extends BaseController {
 
         if(!empty(request('slug')) && !empty(request('type')) && !empty(request('token'))) {
             //logging
-	        $slug = User::decrypt(request('slug'));
+            $token = decryptCode(request('token'));
 
-            $user = User::find( $slug );
+            $header = array();
+            $header[] = 'Accept: */*';
+            $header[] = 'Authorization: Bearer ' . $token;
+            $header[] = 'Content-Type: application/json';
+            $header[] = 'Cache-Control: no-cache';
 
-            if($user) {
-            	$token = User::decrypt(request('token'));
-	            $type = User::decrypt(request('type'));
+            $url = 'https://api.dentacoin.com/api/user/';
+
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+                CURLOPT_RETURNTRANSFER => 1,
+                CURLOPT_POST => 0,
+                CURLOPT_URL => $url,
+                CURLOPT_SSL_VERIFYPEER => 0,
+                CURLOPT_HTTPHEADER => $header,
+            ));
+
+            $resp = json_decode(curl_exec($curl));
+            curl_close($curl);
+
+            if(isset($resp->success) && !empty($resp->success)) {
+
+                $type = decryptCode(request('type'));
                 $approved_statuses = array('approved', 'test', 'added_by_clinic_claimed','added_by_dentist_claimed', 'clinic_branch');
 
-                if($user->self_deleted != NULL) {
-                    return redirect(getLangUrl('page-not-found'));
-                } else if(!in_array($user->status, $approved_statuses) ) {
-                    return redirect(getLangUrl('page-not-found'));
+                if($resp->data->self_deleted != NULL) {
+
+                } else if(!in_array($resp->data->status, $approved_statuses) ) {
+
                 } else {
-                    $session_arr = [
-                        'token' => $token,
-                        'id' => $slug,
-                        'type' => $type
-                    ];
-                    session(['logged_user' => $session_arr]);
-                    Auth::login($user, true);
-
-                    if(!empty(request('dentist_slug'))) {
-                        return redirect(getLangUrl('dentist/'.request('dentist_slug')));
-                    }
-
-                    return redirect(getLangUrl('/'));
+                    session([
+                        'user' => $resp->data,
+                        'user_token' => $token,
+                        'logged_user' => [
+                            'token' => $token,
+                            'id' => $slug,
+                            'type' => $type,
+                        ],
+                    ]);
                 }
-            } else {
-                return redirect(getLangUrl('page-not-found'));
             }
+
         } else if(!empty(request('logout-token'))) {
             //logging out
-            $token = User::decrypt(request('logout-token'));
+            $token = decryptCode(request('logout-token'));
             if(!empty(session('logged_user')['token']) && session('logged_user')['token'] == $token) {
                 session([
-                    'logged_user' => false
+                    'logged_user' => false,                    
+                    'user' => null,
+                    'user_token' => null,
                 ]);
             }
-
-            //TRP / Vox
-	        if( Auth::guard('web')->user() ) {
-	            Auth::guard('web')->user()->logoutActions();
-	        }
-            Auth::guard('web')->logout();
-        } else {
-            return redirect(getLangUrl('page-not-found'));
         }
+
+        return redirect(getLangUrl('/'));
     }
 }
