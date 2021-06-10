@@ -37,7 +37,7 @@ class SSOController extends BaseController {
             $resp = json_decode(curl_exec($curl));
             curl_close($curl);
 
-            if(isset($resp->success) && !empty($resp->success)) {
+            if(isset($resp->success) && isset($resp->success) && !empty($resp->success)) {
 
                 $type = decryptCode(request('type'));
                 $slug = decryptCode(request('slug'));
