@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Support;
 use App\Http\Controllers\FrontController;
 // use Illuminate\Support\Facades\Request;
 
+use App\Models\SupportCategoryTranslation;
+use App\Models\SupportQuestionTranslation;
 use App\Models\SupportCategory;
 use App\Models\SupportQuestion;
 
