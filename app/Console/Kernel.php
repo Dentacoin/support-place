@@ -88,8 +88,7 @@ class Kernel extends ConsoleKernel {
 
             echo 'Get Questions - DONE!'.PHP_EOL.PHP_EOL.PHP_EOL;
             
-        // })->cron('30 7 * * 0');
-        })->everyMinute();
+        })->cron('30 7 * * 0');
     }
 
     /**
