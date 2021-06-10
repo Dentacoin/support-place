@@ -40,6 +40,7 @@ class SSOController extends BaseController {
             if(isset($resp->success) && !empty($resp->success)) {
 
                 $type = decryptCode(request('type'));
+                $slug = $this->decrypt(request('slug'));
                 $approved_statuses = array('approved', 'test', 'added_by_clinic_claimed','added_by_dentist_claimed', 'clinic_branch');
 
                 if($resp->data->self_deleted != NULL) {
