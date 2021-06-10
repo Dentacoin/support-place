@@ -19,7 +19,8 @@ class IndexController extends FrontController {
 	public function index($locale=null) {
 
 
-		if(!empty($user) && $user->id == 37530) {
+		if(!empty($this->user) && $this->user->id == 37530) {
+			echo 'dsfsd';
 			
 			$curl = curl_init();
 	        curl_setopt_array($curl, array(
