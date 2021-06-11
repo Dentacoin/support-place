@@ -52,7 +52,7 @@
 				</div>
 			</div>
 
-			<div class="alert-error" id="not-logged-error" style="display: none;">You must be logged in to continue. <a href="javascript:;" class="open-dentacoin-gateway">Log in here</a>.</div>
+			<div class="alert-error" id="not-logged-error" style="display: none;">You must log in to continue. <a href="javascript:;" class="open-dentacoin-gateway">Log in here</a>.</div>
 			<div class="alert-error" id="query-error" style="display: none;margin-top: 20px">Something went wrong, please try again later.</div>
 
 		</form>

@@ -948,10 +948,14 @@ footer {
     font-weight: inherit;
     margin-bottom: inherit;
     text-align: left; }
+  .dentacoin-login-gateway-container .dentacoin-login-gateway-wrapper .popup-header-action a[data-type="patient"].active .role-name {
+    color: inherit; }
   .dentacoin-login-gateway-container .dentacoin-login-gateway-wrapper .facebook-custom-btn .inline-block {
     color: white; }
   .dentacoin-login-gateway-container .dentacoin-login-gateway-wrapper .inline-block {
     font-size: inherit; }
+.dentacoin-login-gateway-container input[type="radio"] {
+  -webkit-appearance: auto; }
 .dentacoin-login-gateway-container a:hover {
   color: inherit; }
 .dentacoin-login-gateway-container .custom-checkbox-style .custom-checkbox-label {

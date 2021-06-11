@@ -95,6 +95,8 @@ class FrontController extends BaseController {
         $params['request'] = $this->request;
         $params['user'] = $this->user;
 
+        $params['socials'] = @file_get_contents('https://dentacoin.com/info/socials-data', true);
+
         $params['seo_title'] = !empty($params['seo_title']) ? $params['seo_title'] : trans($text_domain.'.seo.'.$this->current_page.'.title');
         $params['seo_description'] = !empty($params['seo_description']) ? $params['seo_description'] : trans($text_domain.'.seo.'.$this->current_page.'.description');
 

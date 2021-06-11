@@ -100,33 +100,13 @@
 		<footer>
 		    <div class="container-footer">
 		        <div class="socials flex flex-text-center flex-center">
-                    <a target="_blank" href="mailto:admin@dentacoin.com">
-                        <img src="{{ url('img-support/mail-icon.svg') }}"/>
-                    </a>
-                    <a target="_blank" href="https://t.me/dentacoin/">
-                        <img src="{{ url('img-support/iconmonstr-telegram.svg') }}"/>
-                    </a>
-                    <a target="_blank" href="https://www.facebook.com/dentacoin/">
-                        <img src="{{ url('img-support/facebook.svg') }}"/>
-                    </a>
-                    <a target="_blank" href="https://twitter.com/dentacoin/">
-                        <img src="{{ url('img-support/twitter.svg') }}"/>
-                    </a>
-                    <a target="_blank" href="https://www.instagram.com/dentacoin_official/">
-                        <img src="{{ url('img-support/instagram.svg') }}"/>
-                    </a>
-                    <a target="_blank" href="https://www.youtube.com/dentacoin/">
-                        <img src="{{ url('img-support/youtube-play-button.svg') }}"/>
-                    </a>
-                    <a target="_blank" href="https://github.com/Dentacoin/">
-                        <img src="{{ url('img-support/github.svg') }}"/>
-                    </a>
-                    <a target="_blank" href="https://www.reddit.com/r/Dentacoin/">
-                        <img src="{{ url('img-support/reddit.svg') }}"/>
-                    </a>
-                    <a target="_blank" href="https://medium.com/@dentacoin/">
-                        <img src="{{ url('img-support/medium-m.svg') }}"/>
-                    </a>
+		        	@if(!empty($socials))
+		        		@foreach(json_decode($socials, true) as $social)
+		        			<a target="_blank" href="{{ $social['link'] }}">
+		                        <img src="{{ $social['media_name'] }}" alt="{{ $social['media_alt'] }}"/>
+		                    </a>
+		        		@endforeach
+	                @endif
                 </div>
 
 		        <div class="footer-menu flex flex-mobile flex-center flex-text-center">
@@ -135,7 +115,6 @@
 		        	</a>
                     <div class="has-menu" href="javascript:;">
                         Fact Sheet
-
                         <div class="sub-menu">
                         	<a target="_blank" href="https://dentacoin.com/assets/uploads/dentacoin-fact-sheet.pdf">English</a>
                         	<a target="_blank" href="https://dentacoin.com/assets/uploads/was-ist-dentacoin.pdf">Deutsch</a>

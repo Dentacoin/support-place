@@ -1302,6 +1302,15 @@ footer {
 			}
 		}
 
+		.popup-header-action {
+			a[data-type="patient"].active {
+
+				.role-name {
+				    color: inherit;
+				}
+			}
+		}
+
 		.facebook-custom-btn {
 
 			.inline-block {
@@ -1312,6 +1321,10 @@ footer {
 		.inline-block {
 		    font-size: inherit;
 		}
+	}
+
+	input[type="radio"] {
+		-webkit-appearance: auto;
 	}
 
 	a:hover {
