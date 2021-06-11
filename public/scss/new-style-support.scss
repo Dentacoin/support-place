@@ -991,13 +991,36 @@ header {
 	}
 
 	.question-content {
-		p,span,a {
+		& * {
+			font-family: 'Calibri', sans-serif !important;
+			text-align: inherit !important;
+		}
+
+		p,span,a,b,strong,i,ol, ul, li, em, strike {
 			font-size: 18px;
+		}
+
+		ul {
+			list-style: disc;
+    		padding-left: 20px;
+		}
+
+		ol {
+			list-style: number;
+    		padding-left: 20px;
+		}
+
+		em {
+			font-style: italic;
 		}
 
 		a {
 			color: #00b0e9;
 			text-decoration: underline;
+			font-weight: bold;
+		}
+
+		b,strong {
 			font-weight: bold;
 		}
 	}

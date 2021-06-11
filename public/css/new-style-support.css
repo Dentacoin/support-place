@@ -739,11 +739,24 @@ header {
       padding-bottom: 110px; } }
   .question-wrapper h2 {
     margin-bottom: 30px; }
-  .question-wrapper .question-content p, .question-wrapper .question-content span, .question-wrapper .question-content a {
+  .question-wrapper .question-content * {
+    font-family: 'Calibri', sans-serif !important;
+    text-align: inherit !important; }
+  .question-wrapper .question-content p, .question-wrapper .question-content span, .question-wrapper .question-content a, .question-wrapper .question-content b, .question-wrapper .question-content strong, .question-wrapper .question-content i, .question-wrapper .question-content ol, .question-wrapper .question-content ul, .question-wrapper .question-content li, .question-wrapper .question-content em, .question-wrapper .question-content strike {
     font-size: 18px; }
+  .question-wrapper .question-content ul {
+    list-style: disc;
+    padding-left: 20px; }
+  .question-wrapper .question-content ol {
+    list-style: number;
+    padding-left: 20px; }
+  .question-wrapper .question-content em {
+    font-style: italic; }
   .question-wrapper .question-content a {
     color: #00b0e9;
     text-decoration: underline;
+    font-weight: bold; }
+  .question-wrapper .question-content b, .question-wrapper .question-content strong {
     font-weight: bold; }
 
 .questions-search .search-bar .results {
