@@ -230,6 +230,12 @@
 		@if(empty($user) && empty($_COOKIE['performance_cookies']) && empty($_COOKIE['marketing_cookies']) && empty($_COOKIE['strictly_necessary_policy']) && empty($_COOKIE['functionality_cookies']))
 			<script src="https://dentacoin.com/assets/libs/dentacoin-package/js/init.js"></script>
 			<link rel="stylesheet" type="text/css" href="https://dentacoin.com/assets/libs/dentacoin-package/css/style-cookie.css">
+
+			<script type="text/javascript">
+				if (typeof dcnCookie !== 'undefined') {
+					dcnCookie.init({});
+				}
+			</script>
 		@endif
 
 		@if(!empty( $markLogout )) 
