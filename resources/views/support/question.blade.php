@@ -4,12 +4,14 @@
 
 	<div class="question-wrapper container">
 		<a href="{{ getLangUrl('/') }}" class="back">< Back</a>
-		<h2>{{ $question->question }}</h2>
+		<div class="animation">
+			<h2>{{ $question->question }}</h2>
 
-		<div class="question-content">
-			{!! $question->content !!}
-			<br/>
-			<p>If you require further assistance, please <a href="{{ getLangUrl('contact') }}">contact our support team</a>.&nbsp;</p>
+			<div class="question-content">
+				{!! $question->content !!}
+				<br/>
+				<p>If you require further assistance, please <a href="{{ getLangUrl('contact') }}">contact our support team</a>.&nbsp;</p>
+			</div>
 		</div>
 	</div>
 

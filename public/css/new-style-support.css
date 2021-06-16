@@ -730,6 +730,12 @@ header {
       margin-bottom: 10px; }
   .contact-container .contact-success {
     display: none; }
+    .contact-container .contact-success .alert {
+      text-align: left; }
+      .contact-container .contact-success .alert a {
+        color: #00aeef;
+        text-decoration: underline;
+        font-size: 14px; }
 
 .question-wrapper {
   padding-top: 80px;
@@ -737,7 +743,22 @@ header {
   @media screen and (max-width: 768px) {
     .question-wrapper {
       padding-bottom: 110px; } }
+  .question-wrapper .animation {
+    opacity: 1;
+    animation-name: OpacityEffect;
+    animation-duration: 2s; }
+@keyframes OpacityEffect {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
   .question-wrapper h2 {
+    display: inline-block;
+    background-color: #00b0e9;
+    color: white;
+    padding: 2px 20px 4px;
+    border-radius: 10px;
+    margin-top: 10px;
     margin-bottom: 30px; }
   .question-wrapper .question-content * {
     font-family: 'Calibri', sans-serif !important;

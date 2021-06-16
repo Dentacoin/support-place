@@ -44,7 +44,7 @@ class IndexController extends FrontController {
 			return $this->ShowSupportView('index', [
 				'categories' => $resp->data->categories,
 				'main_questions' => $resp->data->main_questions,
-				'all_questions' => json_encode($all_questions),
+				'all_questions' => addslashes(json_encode($all_questions)),
 			]);
         } else {
 
@@ -59,7 +59,7 @@ class IndexController extends FrontController {
         	return $this->ShowSupportView('index', [
         		'categories' => SupportCategory::with('questions')->get(),
                 'main_questions' => SupportQuestion::where('is_main', 1)->get(),
-                'all_questions' => json_encode($all_questions),
+                'all_questions' => addslashes(json_encode($all_questions)),
 			]);
         }
 	}
@@ -242,7 +242,7 @@ class IndexController extends FrontController {
 					'question' => $resp->data->question,
 					'categories' => $resp->data->categories,
 					'main_questions' => $resp->data->main_questions,
-					'all_questions' => json_encode($all_questions),
+					'all_questions' => addslashes(json_encode($all_questions)),
 				]);
         	} else {
         		return redirect(getLangUrl('/'));
@@ -259,7 +259,7 @@ class IndexController extends FrontController {
 	        		'question' => $question,
 	                'categories' => SupportCategory::with('questions')->get(),
 	                'main_questions' => SupportQuestion::where('is_main', 1)->get(),
-	                'all_questions' => json_encode(SupportQuestion::get()),
+	                'all_questions' => addslashes(json_encode(SupportQuestion::get())),
 				]);
 			} else {
         		return redirect(getLangUrl('/'));

@@ -28,7 +28,7 @@
 				@endif
 
 				<textarea class="input alert-after" name="description" id="description" placeholder="Describe your issue"></textarea>
-				<div id="error-description" class="alert-error" style="display: none;">Description must contain only latin characters.</div>
+				<div id="error-description" class="alert-error" style="display: none;">Currently, we provide support in English language only.</div>
 
 				<div class="alert-after">
 					
@@ -59,7 +59,7 @@
 
 		<div class="contact-success">
 			<div class="alert alert-success">
-				Thank you! Our onboarding team will now assess the data you have provided and you will receive an email about your problem.
+				Your inquiry was sucessfully submitted. Our support team will get back to you by email once we reach your case. It may take 7 business days. Note that support  issues are not handled over social media. Meanwhile, you can find answers to most frequently asked questions here: <a href="https://support.dentacoin.com/">https://support.dentacoin.com/</a>
 			</div>
 		</div>
 	</div>

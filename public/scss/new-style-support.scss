@@ -975,6 +975,16 @@ header {
 
 	.contact-success {
 		display: none;
+
+		.alert {
+		    text-align: left;
+
+		    a {
+		    	color: #00aeef;
+			    text-decoration: underline;
+			    font-size: 14px;
+		    }
+		}
 	}
 }
 
@@ -986,7 +996,28 @@ header {
 		padding-bottom: 110px;
 	}
 
+	.animation {
+		opacity: 1;
+		animation-name: OpacityEffect;
+  		animation-duration: 2s;
+	}
+
+	@keyframes OpacityEffect {
+	    0% {
+	    	opacity: 0;
+	    }
+	    100% {
+	    	opacity: 1;
+	    }
+	}
+
 	h2 {
+		display: inline-block;
+	    background-color: #00b0e9;
+	    color: white;
+	    padding: 2px 20px 4px;
+	    border-radius: 10px;
+	    margin-top: 10px;
 		margin-bottom: 30px;
 	}
 
