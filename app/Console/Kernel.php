@@ -69,6 +69,7 @@ class Kernel extends ConsoleKernel {
                 foreach($questions as $question) {
                     $new_q = new SupportQuestion;
                     $new_q->category_id = $question->category_id;
+                    $new_q->order_number = $question->order_number;
                     $new_q->is_main = $question->is_main;
                     $new_q->save();
 
