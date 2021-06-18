@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\Support\SiteMapController;
+use App\Http\Controllers\Support\IndexController;
+use App\Http\Controllers\Auth\AuthenticateUser;
+use App\Http\Controllers\SSOController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,18 +16,25 @@
 |
 */
 
-Route::get('custom-cookie', 						'App\Http\Controllers\SSOController@manageCustomCookie')->name('custom-cookie');
+Route::get('custom-cookie', 								[SSOController::class, 'manageCustomCookie'])->name('custom-cookie');
 
 //Empty route
 $supportRoutes = function () {
-	Route::get('user-logout',								'App\Http\Controllers\Auth\AuthenticateUser@logout');
-	Route::post('login',									'App\Http\Controllers\Auth\AuthenticateUser@login');
+	Route::get('user-logout',								[AuthenticateUser::class, 'logout']);
+	Route::post('login',									[AuthenticateUser::class, 'login']);
+	Route::get('sitemap.xml', 								[SiteMapController::class, 'sitemap']);
 	
 	Route::group(['prefix' => '{locale?}'], function(){
-		Route::any('/', 									'App\Http\Controllers\Support\IndexController@index');
-		Route::any('contact', 								'App\Http\Controllers\Support\IndexController@contact');
-		Route::any('question/{slug}', 						'App\Http\Controllers\Support\IndexController@question');
+		Route::any('/', 									[IndexController::class, 'index']);
+		Route::any('contact', 								[IndexController::class, 'contact']);
+		Route::any('question/{slug}', 						[IndexController::class, 'question']);
 	});
+
+	// Route::fallback(function () {
+
+	//     return view("404");
+
+	// });
 };
 Route::domain('dev-support.dentacoin.com')->group($supportRoutes);
 Route::domain('support.dentacoin.com')->group($supportRoutes);

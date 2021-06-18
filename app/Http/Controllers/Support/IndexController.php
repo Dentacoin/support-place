@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Support;
 
 use App\Http\Controllers\FrontController;
-// use Illuminate\Support\Facades\Request;
 
 use App\Models\SupportCategory;
 use App\Models\SupportQuestion;
@@ -194,6 +193,10 @@ class IndexController extends FrontController {
 		}
 
 		return $this->ShowSupportView('contact', [
+			'seo_title' => 'Contact Support | Dentacoin',
+			'seo_description' => 'Get in touch with Dentacoin support team.',
+			'social_title' => 'Contact Support | Dentacoin',
+			'social_description' => 'Get in touch with Dentacoin support team.',
 			'js' => [
 				'contact.js',
 			],
@@ -237,12 +240,18 @@ class IndexController extends FrontController {
 		        		];
 		        	}
 	        	}
-        	
+
+	        	$seo_description = explode('.', trim(preg_replace('/\s\s+/', ' ', strip_tags($resp->data->question->content))));
+
 				return $this->ShowSupportView('question', [
 					'question' => $resp->data->question,
 					'categories' => $resp->data->categories,
 					'main_questions' => $resp->data->main_questions,
 					'all_questions' => addslashes(json_encode($all_questions)),
+					'seo_title' => $resp->data->question->question.' | Dentacoin',
+					'seo_description' => isset($seo_description[1]) ? $seo_description[0].'.'.$seo_description[1] : $seo_description[0],
+					'social_title' => $resp->data->question->question.' | Dentacoin',
+					'social_description' => isset($seo_description[1]) ? $seo_description[0].'.'.$seo_description[1] : $seo_description[0],
 				]);
         	} else {
         		return redirect(getLangUrl('/'));
@@ -255,11 +264,18 @@ class IndexController extends FrontController {
             })->first();
 
 	        if(!empty($question)) {
+
+	        	$seo_description = explode('.', trim(preg_replace('/\s\s+/', ' ', strip_tags($question->content))));
+
 	        	return $this->ShowSupportView('question', [
 	        		'question' => $question,
 	                'categories' => SupportCategory::with('questions')->get(),
 	                'main_questions' => SupportQuestion::where('is_main', 1)->get(),
 	                'all_questions' => addslashes(json_encode(SupportQuestion::get())),
+					'seo_title' => $question->question.' | Dentacoin',
+					'seo_description' => isset($seo_description[1]) ? $seo_description[0].'.'.$seo_description[1] : $seo_description[0],
+					'social_title' => $question->question.' | Dentacoin',
+					'social_description' => isset($seo_description[1]) ? $seo_description[0].'.'.$seo_description[1] : $seo_description[0],
 				]);
 			} else {
         		return redirect(getLangUrl('/'));

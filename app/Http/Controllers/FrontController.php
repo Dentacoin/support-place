@@ -97,14 +97,14 @@ class FrontController extends BaseController {
 
         $params['socials'] = @file_get_contents('https://dentacoin.com/info/socials-data', true);
 
-        $params['seo_title'] = !empty($params['seo_title']) ? $params['seo_title'] : trans($text_domain.'.seo.'.$this->current_page.'.title');
-        $params['seo_description'] = !empty($params['seo_description']) ? $params['seo_description'] : trans($text_domain.'.seo.'.$this->current_page.'.description');
+        $params['seo_title'] = !empty($params['seo_title']) ? $params['seo_title'] : 'Help Center | Dentacoin';
+        $params['seo_description'] = !empty($params['seo_description']) ? $params['seo_description'] : 'Find quick answers to your question.';
 
-        $params['social_title'] = !empty($params['social_title']) ? $params['social_title'] : trans($text_domain.'.social.'.$this->current_page.'.title');
-        $params['social_description'] = !empty($params['social_description']) ? $params['social_description'] : trans($text_domain.'.social.'.$this->current_page.'.description');
+        $params['social_title'] = !empty($params['social_title']) ? $params['social_title'] : 'Help Center | Dentacoin';
+        $params['social_description'] = !empty($params['social_description']) ? $params['social_description'] : 'Find quick answers to your question.';
 
         $params['canonical'] = !empty($params['canonical']) ? $params['canonical'] : getLangUrl($this->current_page);
-        $params['social_image'] = !empty($params['social_image']) ? $params['social_image'] : url( '/img-trp/socials-cover.jpg' );
+        $params['social_image'] = !empty($params['social_image']) ? $params['social_image'] : url( '/img-support/social-image.png' );
 
         if( session('mark-login') && empty($params['skipSSO']) ) {
             //dd(session('mark-login'));
