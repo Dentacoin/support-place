@@ -1,0 +1,37 @@
+$pc: "screen and (max-width: 1200px)";
+$tablet: "screen and (max-width: 998px)";
+$phone: "screen and (max-width: 768px)";
+
+
+.container {
+	padding-top: 80px;
+
+	h1 {
+		font-size: 40px;
+	    font-weight: bold;
+	    margin-top: 40px;
+	    margin-bottom: 30px;
+	}
+
+	a {
+		color: #11b3f0;
+	    border: 2px solid #11b3f0;
+	    font-size: 24px;
+	    text-transform: uppercase;
+	    font-weight: bold;
+	    padding: 10px 50px;
+	    border-radius: 7px;
+	    display: inline-block;
+	    transition: all 0.2s ease;
+
+	    @media #{$phone} {
+	    	font-size: 30px;
+	    }
+
+	    &:hover {
+	    	transition: all 0.2s ease;
+	    	background-color: #11b3f0;
+	    	color: white;
+	    }
+	}
+}

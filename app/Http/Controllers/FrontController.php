@@ -86,7 +86,7 @@ class FrontController extends BaseController {
 
     }
 
-    public function ShowSupportView($page, $params=array(), $statusCode=null) {
+    public function ShowView($page, $params=array(), $statusCode=null) {
         
         $text_domain = 'support';
 
@@ -123,7 +123,7 @@ class FrontController extends BaseController {
             ]);
         }
 
-        $params['cache_version'] = '20210616';
+        $params['cache_version'] = '20210628';
 
         if(!isset($params['xframe'])) {
             return response()->view('support.'.$page, $params, $statusCode ? $statusCode : 200)->header('X-Frame-Options', 'DENY');

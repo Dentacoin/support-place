@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Support\NotFoundController;
 use App\Http\Controllers\Support\SiteMapController;
 use App\Http\Controllers\Support\IndexController;
 use App\Http\Controllers\Auth\AuthenticateUser;
 use App\Http\Controllers\SSOController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,13 +30,11 @@ $supportRoutes = function () {
 		Route::any('/', 									[IndexController::class, 'index']);
 		Route::any('contact', 								[IndexController::class, 'contact']);
 		Route::any('question/{slug}', 						[IndexController::class, 'question']);
+
+		Route::get('page-not-found', 						[NotFoundController::class, 'home']);
+		Route::get('{catch?}', 								[NotFoundController::class, 'catch']);
 	});
 
-	// Route::fallback(function () {
-
-	//     return view("404");
-
-	// });
 };
 Route::domain('dev-support.dentacoin.com')->group($supportRoutes);
 Route::domain('support.dentacoin.com')->group($supportRoutes);

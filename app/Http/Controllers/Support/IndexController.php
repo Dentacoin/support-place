@@ -16,6 +16,10 @@ use App;
 class IndexController extends FrontController {
 
 	public function index($locale=null) {
+
+		if(!empty($locale) && !in_array($locale, config('langs'))) {
+			return redirect(getLangUrl('page-not-found'));
+		}
 		
 		$curl = curl_init();
         curl_setopt_array($curl, array(
@@ -40,7 +44,7 @@ class IndexController extends FrontController {
 	        	}
         	}
 
-			return $this->ShowSupportView('index', [
+			return $this->ShowView('index', [
 				'categories' => $resp->data->categories,
 				'main_questions' => $resp->data->main_questions,
 				'all_questions' => addslashes(json_encode($all_questions)),
@@ -55,7 +59,7 @@ class IndexController extends FrontController {
         		];
         	}
 
-        	return $this->ShowSupportView('index', [
+        	return $this->ShowView('index', [
         		'categories' => SupportCategory::with('questions')->get(),
                 'main_questions' => SupportQuestion::where('is_main', 1)->get(),
                 'all_questions' => addslashes(json_encode($all_questions)),
@@ -192,7 +196,7 @@ class IndexController extends FrontController {
             }
 		}
 
-		return $this->ShowSupportView('contact', [
+		return $this->ShowView('contact', [
 			'seo_title' => 'Contact Support | Dentacoin',
 			'seo_description' => 'Get in touch with Dentacoin support team.',
 			'social_title' => 'Contact Support | Dentacoin',
@@ -243,7 +247,7 @@ class IndexController extends FrontController {
 
 	        	$seo_description = explode('.', trim(preg_replace('/\s\s+/', ' ', strip_tags($resp->data->question->content))));
 
-				return $this->ShowSupportView('question', [
+				return $this->ShowView('question', [
 					'question' => $resp->data->question,
 					'categories' => $resp->data->categories,
 					'main_questions' => $resp->data->main_questions,
@@ -267,7 +271,7 @@ class IndexController extends FrontController {
 
 	        	$seo_description = explode('.', trim(preg_replace('/\s\s+/', ' ', strip_tags($question->content))));
 
-	        	return $this->ShowSupportView('question', [
+	        	return $this->ShowView('question', [
 	        		'question' => $question,
 	                'categories' => SupportCategory::with('questions')->get(),
 	                'main_questions' => SupportQuestion::where('is_main', 1)->get(),
