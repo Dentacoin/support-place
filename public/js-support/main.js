@@ -136,6 +136,22 @@ jQuery(document).ready(function($){
         }
     }, 1000);
 
+    var handleHorizontalScrolls = function() {
+        var scrollableElement = $('.categories-wrapper .flex');
+        var children = scrollableElement.children();
+        var total = 0;
+
+        children.each( function() { 
+            total += $(this).outerWidth() + parseFloat($(this).css('margin-right')) + parseFloat($(this).css('margin-left'));
+        });
+
+        scrollableElement.css('width', total + parseFloat(scrollableElement.css('padding-left')) + parseFloat(scrollableElement.css('padding-right')) + 60);
+    }
+
+    if($(window).outerWidth() <= 998) {
+        setTimeout(handleHorizontalScrolls , 10);
+    }
+
 });
 
 var getUrlParameter = function(sParam) {

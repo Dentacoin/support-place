@@ -778,15 +778,21 @@ header {
 		position: relative;
 		background-color: #eeeeee;
 
-		@media #{$phone} {
+		@media #{$tablet} {
 			overflow-x: scroll;
+		}
+
+		.flex {
+			@media #{$tablet} {
+				display: block;
+			}
 		}
 
 		.container {
 			z-index: auto;
 
-			@media #{$phone} {
-				width: 840px;
+			@media #{$tablet} {
+				// width: 840px;
     			padding-left: 50px;
 			}
 		}
@@ -798,7 +804,7 @@ header {
 			transition: all 0.2s ease;
 			border-bottom: 2px solid #eeeeee;
 
-			@media #{$phone} {
+			@media #{$tablet} {
 				display: inline-block;
 				padding: 20px 18px;
 			}
@@ -1019,6 +1025,10 @@ header {
 	    border-radius: 10px;
 	    margin-top: 10px;
 		margin-bottom: 30px;
+
+		@media #{$phone} {
+			margin-bottom: 16px;
+		}
 	}
 
 	.question-content {
