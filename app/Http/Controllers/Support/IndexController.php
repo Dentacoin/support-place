@@ -60,7 +60,7 @@ class IndexController extends FrontController {
         	}
 
         	return $this->ShowView('index', [
-        		'categories' => SupportCategory::with('questions')->get(),
+        		'categories' => SupportCategory::with('questions')->orderBy('order_number', 'asc')->get(),
                 'main_questions' => SupportQuestion::where('is_main', 1)->get(),
                 'all_questions' => addslashes(json_encode($all_questions)),
 			]);
@@ -273,7 +273,7 @@ class IndexController extends FrontController {
 
 	        	return $this->ShowView('question', [
 	        		'question' => $question,
-	                'categories' => SupportCategory::with('questions')->get(),
+	                'categories' => SupportCategory::with('questions')->orderBy('order_number', 'asc')->get(),
 	                'main_questions' => SupportQuestion::where('is_main', 1)->get(),
 	                'all_questions' => addslashes(json_encode(SupportQuestion::get())),
 					'seo_title' => $question->question.' | Dentacoin',

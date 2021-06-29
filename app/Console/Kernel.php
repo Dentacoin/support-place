@@ -51,6 +51,7 @@ class Kernel extends ConsoleKernel {
                 foreach($categories as $category) {
                     $new_cat = new SupportCategory;
                     $new_cat->name = '';
+                    $new_cat->order_number = $category->order_number;;
                     $new_cat->save();
 
                     foreach (config('langs') as $key => $value) {

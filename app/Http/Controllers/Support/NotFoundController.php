@@ -14,7 +14,9 @@ class NotFoundController extends FrontController {
 		$params = array(
 			'css' => [
 				'404.css'
-			]
+			],
+            'seo_title' => '404 - Page not found',
+            'seo_description' => '404 - Page not found',
 		);
 
 		return $this->ShowView('404', $params, 404);	
