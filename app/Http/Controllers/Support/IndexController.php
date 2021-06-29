@@ -103,6 +103,13 @@ class IndexController extends FrontController {
 	                ] );
             	}
 
+            	if(!$this->validateLatin(Request::input('description'))) {
+            		 return Response::json( [
+	                	'success' => false,
+	                    'non_latin' => true,
+	                ] );
+            	}
+
             	$captcha = false;
 	            $cpost = [
 	                'secret' => env('CAPTCHA_SECRET'),
@@ -206,6 +213,16 @@ class IndexController extends FrontController {
 			],
 		]);
 	}
+
+    private function validateLatin($string) {
+        $result = false;
+     
+        if (preg_match("/^[\w\d\s\+\'\&.,!?()-]*$/", $string)) {
+            $result = true;
+        }
+     
+        return $result;
+    }
 
 	private function getFilePath($thumb = false) {
         $folder = storage_path().'/app/public/support-contact/'.($this->id%100);

@@ -64,6 +64,7 @@ jQuery(document).ready(function($){
         $('.ajax-alert').remove();
         $('#captcha-error').hide();
         $('#query-error').hide();
+        $('#error-description').hide();
 
         var formData = new FormData(this);
         formData.append("_token", $('[name="csrf-token"]').attr('content'));
@@ -95,6 +96,8 @@ jQuery(document).ready(function($){
                 } else if(data.need_login) {
                     $('.bottom-form').hide();
                     $('#not-logged-error').css('display', 'block');
+                } else if(data.non_latin) {
+                    $('#error-description').css('display', 'block');
                 }
             }
             ajax_is_running = false;
