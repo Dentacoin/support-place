@@ -19,7 +19,7 @@ use App\Http\Controllers\SSOController;
 */
 
 Route::get('custom-cookie', 								[SSOController::class, 'manageCustomCookie'])->name('custom-cookie');
-Route::get('get-unseen-notifications-count', 				[SSOController::class, 'getUnseenNotificationsCount']);
+Route::post('get-unseen-notifications-count', 				[SSOController::class, 'getUnseenNotificationsCount']);
 
 //Empty route
 $supportRoutes = function () {
