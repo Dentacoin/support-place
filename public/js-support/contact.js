@@ -43,7 +43,7 @@ jQuery(document).ready(function($){
     } );
 
     checkForNonLatinCharacters = function(text) {
-        var rforeign = /[^\u0000-\u007f]/;
+        var rforeign = /[^\u0000-\u007f\’]/;
 
         if (rforeign.test(text)) {
             $('#error-description').css('display', 'block');

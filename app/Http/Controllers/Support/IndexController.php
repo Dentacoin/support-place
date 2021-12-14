@@ -217,7 +217,7 @@ class IndexController extends FrontController {
     private function validateLatin($string) {
         $result = false;
      
-        if (preg_match("/^[\w\d\s\+\'\&.,!?()-]*$/", $string)) {
+        if (preg_match("/^[\w\d\s\+\'\&.,!?()-’]*$/", $string)) {
             $result = true;
         }
      

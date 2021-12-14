@@ -123,7 +123,7 @@ class FrontController extends BaseController {
             ]);
         }
 
-        $params['cache_version'] = '20210805';
+        $params['cache_version'] = '20211214';
 
         if(!isset($params['xframe'])) {
             return response()->view('support.'.$page, $params, $statusCode ? $statusCode : 200)->header('X-Frame-Options', 'DENY');
