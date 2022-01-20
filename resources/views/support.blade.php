@@ -145,7 +145,7 @@
 		    </div>
 
 	        <div class="all-rights tac">
-                <div>© 2021 Dentacoin Foundation. All rights reserved.</div>
+                <div>© {{ date('Y') }} Dentacoin Foundation. All rights reserved.</div>
                 <div>
                 	<a href="https://dentacoin.com/assets/uploads/dentacoin-foundation.pdf" target="_blank" class="footer-bottom-link">
 	                	Verify Dentacoin Foundation
