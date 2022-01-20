@@ -65,6 +65,7 @@ jQuery(document).ready(function($){
         $('#captcha-error').hide();
         $('#query-error').hide();
         $('#error-description').hide();
+        $('#error-message').hide();
 
         var formData = new FormData(this);
         formData.append("_token", $('[name="csrf-token"]').attr('content'));
@@ -79,18 +80,16 @@ jQuery(document).ready(function($){
             processData: false
         }).done( (function (data) {
             if(data.success) {
-                // console.log(data);
-
                 $(this).hide();
                 $('.contact-success').show();
-                
             } else {
-                // console.log(data);
                 if(data.messages) {
                     for(var i in data.messages) {
                         $('[name="'+i+'"]').addClass('has-error');
                         $('[name="'+i+'"]').closest('.alert-after').after('<div class="alert alert-warning ajax-alert alert-'+i+'">'+data.messages[i]+'</div>');
                     }
+                } else if(data.message) {
+                    $('#error-message').html(data.message).css('display', 'block');
                 } else if(data.error_captcha) {
                     $('#captcha-error').css('display', 'block');
                 } else if(data.need_login) {

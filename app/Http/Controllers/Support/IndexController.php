@@ -86,7 +86,16 @@ class IndexController extends FrontController {
 				$resp = json_decode(curl_exec($curl));
 				curl_close($curl);
 
-				dd($resp);
+				$response = json_decode($resp, true);
+				if(!empty($response['success'])) {
+
+					if(!empty($response['existing'])) {
+						return Response::json( [
+							'success' => false,
+							'messages' => 'It looks like you have already contacted our Support team. Kindly, wait until we get back to you.'
+						]);
+					}
+				}
 			}
 
 		    $all_ext = ['png', 'jpg', 'jpeg',      'mp4', 'm3u8', 'ts', 'mov', 'avi', 'wmv', 'qt'];
