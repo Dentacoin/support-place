@@ -72,6 +72,7 @@ class FrontController extends BaseController {
         $this->middleware(function ($request, $next) {
             $this->user = session('user');
             $this->api_link = 'https://api.dentacoin.com/api';
+            // $this->api_link = 'https://dev-api.dentacoin.com/api';
 
             $request->attributes->add([
                 'user' => $this->user,

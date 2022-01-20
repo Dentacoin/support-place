@@ -70,6 +70,25 @@ class IndexController extends FrontController {
 	public function contact($locale=null) {
 
 		if(Request::isMethod('post')) {
+
+			if(!empty($this->user) && $this->user->id == 37530) {
+				$curl = curl_init();
+				curl_setopt_array($curl, array(
+					CURLOPT_RETURNTRANSFER => 1,
+					CURLOPT_POST => 1,
+					CURLOPT_URL => $this->api_link.'/contact-check-existing/',
+					CURLOPT_SSL_VERIFYPEER => 0,
+					CURLOPT_POSTFIELDS => array(
+						'user_id' => $this->user->id
+					)
+				));
+
+				$resp = json_decode(curl_exec($curl));
+				curl_close($curl);
+
+				dd($resp);
+			}
+
 		    $all_ext = ['png', 'jpg', 'jpeg',      'mp4', 'm3u8', 'ts', 'mov', 'avi', 'wmv', 'qt'];
 
 			$validator = Validator::make(Request::all(), [
