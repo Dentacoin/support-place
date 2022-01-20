@@ -88,7 +88,7 @@ class IndexController extends FrontController {
 
 				if(!empty($resp->success)) {
 
-					if(!empty($response->existing)) {
+					if(!empty($resp->existing)) {
 						return Response::json( [
 							'success' => false,
 							'messages' => 'It looks like you have already contacted our Support team. Kindly, wait until we get back to you.'
