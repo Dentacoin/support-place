@@ -86,10 +86,9 @@ class IndexController extends FrontController {
 				$resp = json_decode(curl_exec($curl));
 				curl_close($curl);
 
-				$response = json_decode($resp, true);
-				if(!empty($response['success'])) {
+				if(!empty($resp->success)) {
 
-					if(!empty($response['existing'])) {
+					if(!empty($response->existing)) {
 						return Response::json( [
 							'success' => false,
 							'messages' => 'It looks like you have already contacted our Support team. Kindly, wait until we get back to you.'
