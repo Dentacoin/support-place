@@ -71,7 +71,7 @@ class IndexController extends FrontController {
 
 		if(Request::isMethod('post')) {
 
-			if(!empty($this->user) && $this->user->id == 37530) {
+			if(!empty($this->user)) {
 				$curl = curl_init();
 				curl_setopt_array($curl, array(
 					CURLOPT_RETURNTRANSFER => 1,
