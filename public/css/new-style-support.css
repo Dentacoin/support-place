@@ -240,7 +240,7 @@ html {
   margin-right: auto; }
 
 .container {
-  width: 780px;
+  width: 900px;
   margin-left: auto;
   margin-right: auto;
   position: relative;
@@ -607,13 +607,13 @@ header {
     .topics-wrapper .categories-wrapper .category {
       font-size: 18px;
       color: #00aeef;
-      padding: 22px 9px;
+      padding: 22px 8px;
       transition: all 0.2s ease;
       border-bottom: 2px solid #eeeeee; }
       @media screen and (max-width: 998px) {
         .topics-wrapper .categories-wrapper .category {
           display: inline-block;
-          padding: 20px 18px; } }
+          padding: 9px 18px; } }
       .topics-wrapper .categories-wrapper .category.active {
         color: black;
         border-bottom: 2px solid black; }
