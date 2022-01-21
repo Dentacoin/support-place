@@ -792,6 +792,15 @@ header {
     color: #00b0e9;
     text-decoration: underline;
     font-weight: bold; }
+  .question-wrapper .question-content .metamask-buttons a {
+    display: inline-flex;
+    align-items: center;
+    border: 2px solid #00b0e9;
+    border-radius: 7px;
+    text-decoration: none !important;
+    padding: 5px 10px;
+    background-color: white;
+    margin-top: 15px; }
   .question-wrapper .question-content b, .question-wrapper .question-content strong {
     font-weight: bold; }
 
@@ -1010,13 +1019,3 @@ footer {
 .dentacoin-login-gateway-container .blue-a {
   color: #0fb0e5;
   font-size: 18px; }
-
-.metamask-buttons a {
-  display: inline-flex;
-  align-items: center;
-  border: 2px solid #00b0e9;
-  border-radius: 7px;
-  text-decoration: none;
-  padding: 5px 10px;
-  background-color: white;
-  margin-top: 15px; }
