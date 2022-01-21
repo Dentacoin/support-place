@@ -1010,3 +1010,13 @@ footer {
 .dentacoin-login-gateway-container .blue-a {
   color: #0fb0e5;
   font-size: 18px; }
+
+.metamask-buttons {
+  display: inline-flex;
+  align-items: center;
+  border: 2px solid #00b0e9;
+  border-radius: 7px;
+  text-decoration: none;
+  padding: 5px 10px;
+  background-color: white;
+  margin-top: 15px; }
