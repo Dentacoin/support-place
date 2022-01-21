@@ -806,7 +806,9 @@ header {
       margin-right: 10px; }
       @media screen and (max-width: 768px) {
         .question-wrapper .question-content .metamask-buttons a {
-          display: flex; } }
+          display: flex;
+          justify-content: space-between;
+          margin-right: 0px; } }
       .question-wrapper .question-content .metamask-buttons a:last-child {
         margin-right: 0px; }
       .question-wrapper .question-content .metamask-buttons a img:first-child {

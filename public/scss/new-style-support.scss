@@ -1090,7 +1090,9 @@ header {
 				margin-right: 10px;
 
 				@media #{$phone} {
-					display: flex;;
+					display: flex;
+					justify-content: space-between;
+					margin-right: 0px;
 				}
 
 				&:last-child {
