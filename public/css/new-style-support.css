@@ -808,7 +808,9 @@ header {
         .question-wrapper .question-content .metamask-buttons a {
           display: flex;
           justify-content: space-between;
-          margin-right: 0px; } }
+          margin-right: 0px;
+          text-align: center !important;
+          font-size: 17px; } }
       .question-wrapper .question-content .metamask-buttons a:last-child {
         margin-right: 0px; }
       .question-wrapper .question-content .metamask-buttons a img:first-child {
