@@ -1076,7 +1076,9 @@ header {
 		}
 
 		.metamask-buttons {
-
+			margin-bottom: 20px;
+			display: block !important;
+			
 			a {
 				display: inline-flex;
 				align-items: center;
@@ -1086,6 +1088,15 @@ header {
 				padding: 5px 10px;
 				background-color: white;
 				margin-top: 15px;
+
+				img {
+					&:first-child {
+						margin-right: 15px;
+					}
+					&:last-child {
+						margin-left: 15px;
+					}
+				}
 			}
 		}
 

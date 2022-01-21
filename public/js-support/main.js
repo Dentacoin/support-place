@@ -152,6 +152,69 @@ jQuery(document).ready(function($){
         setTimeout(handleHorizontalScrolls , 10);
     }
 
+    if (window.ethereum) {
+        async function init() {
+            $('#metamask-network').click(async function() {
+                var chainId = await ethereum.request({method: 'eth_chainId'});
+                if (chainId != '0xa') {
+                    const wasAdded = await window.ethereum.request({
+                        method: "wallet_addEthereumChain",
+                        params: [{
+                            chainId: "0xA",
+                            rpcUrls: ["https://mainnet.optimism.io"],
+                            chainName: "Optimism Mainnet",
+                            nativeCurrency: {
+                                name: "ETH",
+                                symbol: "ETH",
+                                decimals: 18
+                            },
+                            blockExplorerUrls: ["https://optimistic.etherscan.io/"]
+                        }]
+                    });
+    
+                    if (wasAdded) {
+                        alert('Optimism network added successfully.');
+                    } else {
+                        console.log('User does not want to add Optimism network.');
+                    }
+                } else {
+                    alert('You already have Optimism network added to your MetaMask extension.');
+                }
+            });
+            
+            $('#metamask-currency').click(async function() {
+                var chainId = await ethereum.request({method: 'eth_chainId'});
+                if (chainId != '0xa') {
+                    alert('Before adding Dentacoin on Optimism token please make sure you\'ve add Optimism network to your list of networks and the current active network is Optimism.');
+                } else {
+                    const wasAdded = await ethereum.request({
+                        method: 'wallet_watchAsset',
+                        params: {
+                            type: 'ERC20', // Initially only supports ERC20, but eventually more!
+                            options: {
+                                address: '0x1da650c3b2daa8aa9ff6f661d4156ce24d08a062', // The address that the token is at.
+                                symbol: 'DCN', // A ticker symbol or shorthand, up to 5 chars.
+                                decimals: 0, // The number of decimals in the token
+                                image: 'https://dentacoin.com/assets/images/logo.svg', // A string url of the token logo
+                            },
+                        },
+                    });
+    
+                    if (wasAdded) {
+                        alert('Dentacoin on Optimism token added successfully.');
+                    } else {
+                        console.log('User does not want to add DCN token.');
+                    }
+                }
+            });
+        }
+        init();
+    } else {
+        $('#metamask-network, #metamask-currency').click(function() {
+            alert('Missing MetaMask browser extension.');
+        });
+    }
+
 });
 
 var getUrlParameter = function(sParam) {
