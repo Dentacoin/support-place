@@ -803,7 +803,10 @@ header {
       text-decoration: none !important;
       padding: 5px 10px;
       background-color: white;
-      margin-top: 15px; }
+      margin-top: 15px;
+      margin-right: 10px; }
+      .question-wrapper .question-content .metamask-buttons a:last-child {
+        margin-right: 0px; }
       .question-wrapper .question-content .metamask-buttons a img:first-child {
         margin-right: 15px; }
       .question-wrapper .question-content .metamask-buttons a img:last-child {
