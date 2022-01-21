@@ -1426,12 +1426,15 @@ footer {
 }
 
 .metamask-buttons {
-	display: inline-flex;
-    align-items: center;
-    border: 2px solid #00b0e9;
-    border-radius: 7px;
-    text-decoration: none;
-    padding: 5px 10px;
-    background-color: white;
-    margin-top: 15px;
+
+	a {
+		display: inline-flex;
+		align-items: center;
+		border: 2px solid #00b0e9;
+		border-radius: 7px;
+		text-decoration: none;
+		padding: 5px 10px;
+		background-color: white;
+		margin-top: 15px;
+	}
 }

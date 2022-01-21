@@ -1011,7 +1011,7 @@ footer {
   color: #0fb0e5;
   font-size: 18px; }
 
-.metamask-buttons {
+.metamask-buttons a {
   display: inline-flex;
   align-items: center;
   border: 2px solid #00b0e9;
