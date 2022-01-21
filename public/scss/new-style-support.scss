@@ -1077,7 +1077,6 @@ header {
 
 		.metamask-buttons {
 			margin-bottom: 20px;
-			display: block !important;
 			
 			a {
 				display: inline-flex;
@@ -1089,6 +1088,10 @@ header {
 				background-color: white;
 				margin-top: 15px;
 				margin-right: 10px;
+
+				@media #{$phone} {
+					display: flex;;
+				}
 
 				&:last-child {
 					margin-right: 0px;

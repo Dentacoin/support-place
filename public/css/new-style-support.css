@@ -793,8 +793,7 @@ header {
     text-decoration: underline;
     font-weight: bold; }
   .question-wrapper .question-content .metamask-buttons {
-    margin-bottom: 20px;
-    display: block !important; }
+    margin-bottom: 20px; }
     .question-wrapper .question-content .metamask-buttons a {
       display: inline-flex;
       align-items: center;
@@ -805,6 +804,9 @@ header {
       background-color: white;
       margin-top: 15px;
       margin-right: 10px; }
+      @media screen and (max-width: 768px) {
+        .question-wrapper .question-content .metamask-buttons a {
+          display: flex; } }
       .question-wrapper .question-content .metamask-buttons a:last-child {
         margin-right: 0px; }
       .question-wrapper .question-content .metamask-buttons a img:first-child {
