@@ -175,7 +175,7 @@ jQuery(document).ready(function($){
                     if (wasAdded) {
                         alert('Optimism network added successfully.');
                     } else {
-                        console.log('User does not want to add Optimism network.');
+                        alert('Optimism network not added. You did not approve it in your wallet.');
                     }
                 } else {
                     alert('You already have Optimism network added to your MetaMask extension.');
@@ -185,7 +185,7 @@ jQuery(document).ready(function($){
             $('#metamask-currency').click(async function() {
                 var chainId = await ethereum.request({method: 'eth_chainId'});
                 if (chainId != '0xa') {
-                    alert('Before adding Dentacoin on Optimism token please make sure you\'ve add Optimism network to your list of networks and the current active network is Optimism.');
+                    alert(' Before adding Dentacoin on Optimism please make sure you\'ve added Optimism network to your list of networks, and the current active network is Optimism.');
                 } else {
                     const wasAdded = await ethereum.request({
                         method: 'wallet_watchAsset',
@@ -201,9 +201,9 @@ jQuery(document).ready(function($){
                     });
     
                     if (wasAdded) {
-                        alert('Dentacoin on Optimism token added successfully.');
+                        alert('Dentacoin on Optimism added successfully as a token.');
                     } else {
-                        console.log('User does not want to add DCN token.');
+                        alert('Dentacoin token on Optimism not added. You did not approve it in your wallet.');
                     }
                 }
             });
@@ -211,7 +211,7 @@ jQuery(document).ready(function($){
         init();
     } else {
         $('#metamask-network, #metamask-currency').click(function() {
-            alert('Missing MetaMask browser extension.');
+            alert('You don\'t have a MetaMask browser extension. Install it if you wish to proceed.');
         });
     }
 
