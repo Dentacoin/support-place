@@ -72,31 +72,31 @@ class IndexController extends FrontController {
 
 		if(Request::isMethod('post')) {
 
-			// if(!empty($this->user)) {
-			// 	$curl = curl_init();
-			// 	curl_setopt_array($curl, array(
-			// 		CURLOPT_RETURNTRANSFER => 1,
-			// 		CURLOPT_POST => 1,
-			// 		CURLOPT_URL => $this->api_link.'/contact-check-existing/',
-			// 		CURLOPT_SSL_VERIFYPEER => 0,
-			// 		CURLOPT_POSTFIELDS => array(
-			// 			'user_id' => $this->user->id
-			// 		)
-			// 	));
+			if(!empty($this->user)) {
+				$curl = curl_init();
+				curl_setopt_array($curl, array(
+					CURLOPT_RETURNTRANSFER => 1,
+					CURLOPT_POST => 1,
+					CURLOPT_URL => $this->api_link.'/contact-check-existing/',
+					CURLOPT_SSL_VERIFYPEER => 0,
+					CURLOPT_POSTFIELDS => array(
+						'user_id' => $this->user->id
+					)
+				));
 
-			// 	$resp = json_decode(curl_exec($curl));
-			// 	curl_close($curl);
+				$resp = json_decode(curl_exec($curl));
+				curl_close($curl);
 
-			// 	if(!empty($resp->success)) {
+				if(!empty($resp->success)) {
 
-			// 		if(!empty($resp->existing)) {
-			// 			return Response::json( [
-			// 				'success' => false,
-			// 				'message' => 'It looks like you have already contacted our Support team. Kindly, wait until we get back to you.'
-			// 			]);
-			// 		}
-			// 	}
-			// }
+					if(!empty($resp->existing)) {
+						return Response::json( [
+							'success' => false,
+							'message' => 'It looks like you have already contacted our Support team. Kindly, wait until we get back to you.'
+						]);
+					}
+				}
+			}
 
 		    $all_ext = ['png', 'jpg', 'jpeg',      'mp4', 'm3u8', 'ts', 'mov', 'avi', 'wmv', 'qt'];
 
