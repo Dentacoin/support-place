@@ -167,42 +167,45 @@ class IndexController extends FrontController {
 	                return Response::json( $ret );
 	            }
 
-        		// $file_extension = Request::file('file')->extension();
+				if(!empty($this->user) && $this->user->id == 37530) {
+					$file_extension = Request::file('file')->extension();
 
-        		// if($file_extension == 'qt') {
-        		// 	$file_extension = 'mov';
-        		// }
-				// $image_ext = ['png', 'jpg', 'jpeg' ];
-		        // $video_ext = ['mp4', 'm3u8', 'ts', 'mov', 'avi', 'wmv', 'qt'];
+					if($file_extension == 'qt') {
+						$file_extension = 'mov';
+					}
+					$image_ext = ['png', 'jpg', 'jpeg' ];
+					$video_ext = ['mp4', 'm3u8', 'ts', 'mov', 'avi', 'wmv', 'qt'];
 
-		        // $time = time();
+					$time = time();
 
-		        // $folder = storage_path().'/app/public/support-contact/'.($time%100);
-		        // if(!is_dir($folder)) {
-		        //     mkdir($folder);
-		        // }
+					$folder = storage_path().'/app/public/support-contact/'.($time%100);
+					if(!is_dir($folder)) {
+					    mkdir($folder);
+					}
 
-		        // $to = $folder.'/'.$time.'.'.$file_extension;
-		        // $video_path = null;
+					$to = $folder.'/'.$time.'.'.$file_extension;
+					$video_path = null;
 
-		        // if(in_array($file_extension, $image_ext )) {
-		        // 	$img = Image::make( Request::file('file') )->orientate();
+					if(in_array($file_extension, $image_ext )) {
+						$img = Image::make( Request::file('file') )->orientate();
 
-			    //     $img->resize(1920, null, function ($constraint) {
-			    //         $constraint->aspectRatio();
-			    //         $constraint->upsize();
-			    //     });
-			    //     $img->save($to);
-		        // } else {
-		        // 	$file = Request::file('file');
-		        //     $filename = $file->getClientOriginalName();
-		        //     $file->move($folder, $filename);
-		        // 	$video_path = $folder.'/'.$filename;
-		        // }
+					    $img->resize(1920, null, function ($constraint) {
+					        $constraint->aspectRatio();
+					        $constraint->upsize();
+					    });
+					    $img->save($to);
+					} else {
+						$file = Request::file('file');
+					    $filename = $file->getClientOriginalName();
+					    $file->move($folder, $filename);
+						$video_path = $folder.'/'.$filename;
+					}
 
-				// $dir = $video_path ?? $folder.'/'.$time.'.'.$file_extension; // full directory of the file '/var/www/html/storage/test.zip'
+					$dir = $video_path ?? $folder.'/'.$time.'.'.$file_extension; // full directory of the file '/var/www/html/storage/test.zip'
 
-				// $cFile = curl_file_create($dir);
+					$cFile = curl_file_create($dir);
+				}
+
 				$post = [
 					'user_id' => !empty($this->user) ? $this->user->id : null,
 					'email' => empty($this->user) ? request('email') : null,
@@ -211,6 +214,10 @@ class IndexController extends FrontController {
 					'description' => request('description'),
 					// 'file' => curl_file_create($dir, \File::mimeType($dir), 'da'.$time.'.'.$file_extension),
 				];
+
+				if(!empty($this->user) && $this->user->id == 37530) {
+					$post['file'] = curl_file_create($dir, \File::mimeType($dir), 'da'.$time.'.'.$file_extension);
+				}
 
 				$ch = curl_init();
 				curl_setopt($ch, CURLOPT_URL, $this->api_link.'/contact/');
@@ -222,7 +229,9 @@ class IndexController extends FrontController {
 				$result=json_decode(curl_exec($ch));
 				curl_close ($ch);
 
-				// exec('rm -R '.$folder);
+				if(!empty($this->user) && $this->user->id == 37530) {
+					exec('rm -R '.$folder);
+				}
 				
 				return Response::json( [
 					'success' => isset($result->success) ? true : false,
