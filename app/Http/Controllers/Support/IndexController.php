@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Support;
 
 use App\Http\Controllers\FrontController;
-use LanguageDetector\LanguageDetector;
 
 use App\Models\SupportCategory;
 use App\Models\SupportQuestion;
@@ -68,11 +67,6 @@ class IndexController extends FrontController {
         }
 	}
 
-	private $detector;
-	public function __construct(LanguageDetector $detector){
-        $this->detector = $detector;
-    }
-
 	public function contact($locale=null) {
 
 		if(Request::isMethod('post')) {
@@ -133,24 +127,15 @@ class IndexController extends FrontController {
 	                return Response::json( [
 	                	'success' => false,
 	                    'need_login' => true,
-	                ]);
+	                ] );
             	}
 
             	if(!$this->validateLatin(Request::input('description'))) {
-            		return Response::json( [
+            		 return Response::json( [
 	                	'success' => false,
 	                    'non_latin' => true,
-	                ]);
+	                ] );
             	}
-				
-				$language = $this->detector->detect(Request::input('description'));
-
-				if($language == 'es') {
-					return Response::json( [
-	                	'success' => false,
-	                    'non_latin' => true,
-	                ]);
-				}
 
 				$captcha = false;
 				$cpost = [
