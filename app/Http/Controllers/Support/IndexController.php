@@ -137,80 +137,73 @@ class IndexController extends FrontController {
 	                ] );
             	}
 
-				if(!empty($this->user) && $this->user->id == 37530) {
 
+				$captcha = false;
+				$cpost = [
+					'secret' => env('CAPTCHA_SECRET'),
+					'response' => Request::input('g-recaptcha-response'),
+					'remoteip' => !empty($_SERVER["HTTP_CF_CONNECTING_IP"]) ? $_SERVER["HTTP_CF_CONNECTING_IP"] : Request::ip()
+				];
+				$ch = curl_init('https://www.google.com/recaptcha/api/siteverify');
+				curl_setopt($ch, CURLOPT_HEADER, 0);
+				curl_setopt ($ch, CURLOPT_POST, 1);
+				curl_setopt ($ch, CURLOPT_POSTFIELDS, http_build_query($cpost));
+				curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);    
+				curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+				$response = curl_exec($ch);
+				curl_close($ch);
+
+				if($response) {
+					$api_response = json_decode($response, true);
+					if(!empty($api_response['success'])) {
+						$captcha = true;
+					}
+				}
+				if( !$captcha ) {
+					$ret = array(
+						'success' => false,
+						'error_captcha' => true,
+					);
+
+					return Response::json( $ret );
+				}
+
+				$file_extension = Request::file('file')->extension();
+
+				if($file_extension == 'qt') {
+					$file_extension = 'mov';
+				}
+				$image_ext = ['png', 'jpg', 'jpeg' ];
+				$video_ext = ['mp4', 'm3u8', 'ts', 'mov', 'avi', 'wmv', 'qt'];
+
+				$time = time();
+
+				$folder = storage_path().'/app/public/support-contact/'.($time%100);
+				if(!is_dir($folder)) {
+					mkdir($folder);
+				}
+
+				$to = $folder.'/'.$time.'.'.$file_extension;
+				$video_path = null;
+
+				if(in_array($file_extension, $image_ext )) {
+					$img = Image::make( Request::file('file') )->orientate();
+
+					$img->resize(1920, null, function ($constraint) {
+						$constraint->aspectRatio();
+						$constraint->upsize();
+					});
+					$img->save($to);
 				} else {
-
-					$captcha = false;
-					$cpost = [
-						'secret' => env('CAPTCHA_SECRET'),
-						'response' => Request::input('g-recaptcha-response'),
-						'remoteip' => !empty($_SERVER["HTTP_CF_CONNECTING_IP"]) ? $_SERVER["HTTP_CF_CONNECTING_IP"] : Request::ip()
-					];
-					$ch = curl_init('https://www.google.com/recaptcha/api/siteverify');
-					curl_setopt($ch, CURLOPT_HEADER, 0);
-					curl_setopt ($ch, CURLOPT_POST, 1);
-					curl_setopt ($ch, CURLOPT_POSTFIELDS, http_build_query($cpost));
-					curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);    
-					curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
-					$response = curl_exec($ch);
-					curl_close($ch);
-	
-					if($response) {
-						$api_response = json_decode($response, true);
-						if(!empty($api_response['success'])) {
-							$captcha = true;
-						}
-					}
-					if( !$captcha ) {
-						$ret = array(
-							'success' => false,
-							'error_captcha' => true,
-						);
-	
-						return Response::json( $ret );
-					}
+					$file = Request::file('file');
+					$filename = $file->getClientOriginalName();
+					$file->move($folder, $filename);
+					$video_path = $folder.'/'.$filename;
 				}
 
+				$dir = $video_path ?? $folder.'/'.$time.'.'.$file_extension; // full directory of the file '/var/www/html/storage/test.zip'
 
-				if(!empty($this->user) && $this->user->id == 37530) {
-					$file_extension = Request::file('file')->extension();
-
-					if($file_extension == 'qt') {
-						$file_extension = 'mov';
-					}
-					$image_ext = ['png', 'jpg', 'jpeg' ];
-					$video_ext = ['mp4', 'm3u8', 'ts', 'mov', 'avi', 'wmv', 'qt'];
-
-					$time = time();
-
-					$folder = storage_path().'/app/public/support-contact/'.($time%100);
-					if(!is_dir($folder)) {
-					    mkdir($folder);
-					}
-
-					$to = $folder.'/'.$time.'.'.$file_extension;
-					$video_path = null;
-
-					if(in_array($file_extension, $image_ext )) {
-						$img = Image::make( Request::file('file') )->orientate();
-
-					    $img->resize(1920, null, function ($constraint) {
-					        $constraint->aspectRatio();
-					        $constraint->upsize();
-					    });
-					    $img->save($to);
-					} else {
-						$file = Request::file('file');
-					    $filename = $file->getClientOriginalName();
-					    $file->move($folder, $filename);
-						$video_path = $folder.'/'.$filename;
-					}
-
-					$dir = $video_path ?? $folder.'/'.$time.'.'.$file_extension; // full directory of the file '/var/www/html/storage/test.zip'
-
-					$cFile = curl_file_create($dir);
-				}
+				$cFile = curl_file_create($dir);
 
 				$post = [
 					'user_id' => !empty($this->user) ? $this->user->id : null,
@@ -218,12 +211,8 @@ class IndexController extends FrontController {
 					'platform' => request('platform'),
 					'issue' => request('issue'),
 					'description' => request('description'),
-					// 'file' => curl_file_create($dir, \File::mimeType($dir), 'da'.$time.'.'.$file_extension),
+					'file' => curl_file_create($dir, \File::mimeType($dir), 'da'.$time.'.'.$file_extension),
 				];
-
-				if(!empty($this->user) && $this->user->id == 37530) {
-					$post['file'] = curl_file_create($dir, \File::mimeType($dir), 'da'.$time.'.'.$file_extension);
-				}
 
 				$ch = curl_init();
 				curl_setopt($ch, CURLOPT_URL, $this->api_link.'/contact/');
@@ -235,9 +224,7 @@ class IndexController extends FrontController {
 				$result=json_decode(curl_exec($ch));
 				curl_close ($ch);
 
-				if(!empty($this->user) && $this->user->id == 37530) {
-					exec('rm -R '.$folder);
-				}
+				exec('rm -R '.$folder);
 				
 				return Response::json( [
 					'success' => isset($result->success) ? true : false,
