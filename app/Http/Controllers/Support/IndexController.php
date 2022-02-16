@@ -105,7 +105,7 @@ class IndexController extends FrontController {
                 'email' => array('sometimes', 'required', 'email'),
                 'platform' => array('required'),
                 'description' => array('required', 'min:4'),
-                // 'file' => array('required', 'file', 'mimes:'.implode(',', $all_ext), 'max:10000000'),
+                'file' => array('required', 'file', 'mimes:'.implode(',', $all_ext), 'max:10000000'),
             ]);
 
             if ($validator->fails()) {
