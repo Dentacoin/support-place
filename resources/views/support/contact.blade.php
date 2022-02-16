@@ -43,6 +43,12 @@
 
 				<div id="error-file" class="alert-error" style="display: none;">The file you selected is large. Max size: 10MB.</div>
 
+				<div class="g-recaptcha" id="g-recaptcha" data-callback="sendReCaptcha" style="display: inline-block;" data-sitekey="6LddiYEeAAAAAJR7ynIBy4aDGm6tFzWs3rCw3MTK"></div>
+				<div class="alert-error" id="captcha-error" style="display: none;">
+					<!-- Invalid attempt. Please try again. -->
+					Please, check the checkbox for verification.
+				</div>
+
 				<div class="tac">
 					<button type="submit" class="button">SUBMIT</button>
 				</div>

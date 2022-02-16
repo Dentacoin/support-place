@@ -44,18 +44,7 @@
         @endif
 
 		@if($current_page == 'contact')
-			<script src="https://www.google.com/recaptcha/api.js?render=6LcWlH0eAAAAAMnfBcZIr5uiQLTq371prkYYMBKo"></script>
-
-			<script>
-				grecaptcha.ready(function() {
-				// do request for recaptcha token
-				// response is promise with passed token
-					grecaptcha.execute('6LcWlH0eAAAAAMnfBcZIr5uiQLTq371prkYYMBKo', {action: 'login'}).then(function(token) {
-						// add token value to form
-						document.getElementById('g-recaptcha-response').value = token;
-					});
-				});
-			</script>
+			<script src='https://www.google.com/recaptcha/api.js'></script>
 		@endif
 
 		<link rel="apple-touch-icon" sizes="57x57" href="{{ url('fav/apple-icon-57x57.png') }}">
