@@ -7,8 +7,6 @@
 		<h2>Support form</h2>
 
 		<form class="contact-form" action="{{ getLangUrl('contact') }}" method="POST" enctype="multipart/form-data">
-			<input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
-			<input type="hidden" name="action" value="validate_captcha">
 
 			<select name="issue" class="input alert-after" id="issue">
 				<option value="" disabled selected>Type of issue:</option>
