@@ -1,13 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Routing\Controller as BaseController;
-
-use App\Models\User;
-
-use Response;
-use Request;
-use Auth;
 
 class SSOController extends BaseController {
 

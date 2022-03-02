@@ -16,8 +16,6 @@ jQuery(document).ready(function($){
 				fileName = fileName.slice(-23);
 			}
 	    	$(this).closest('label').find('span').html(fileName);
-
-		  	// console.log(this.files[0]);
     	}
 	});
 

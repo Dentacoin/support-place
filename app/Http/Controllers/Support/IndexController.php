@@ -12,8 +12,6 @@ use Validator;
 use Response;
 use Request;
 use Image;
-use Log;
-use App;
 
 class IndexController extends FrontController {
 
@@ -23,6 +21,7 @@ class IndexController extends FrontController {
 			return redirect(getLangUrl('page-not-found'));
 		}
 		
+		//get questions from the api
 		$curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_RETURNTRANSFER => 1,
@@ -52,7 +51,8 @@ class IndexController extends FrontController {
 				'all_questions' => addslashes(json_encode($all_questions)),
 			]);
         } else {
-
+			
+			//get questions from database
 			$all_questions = [];
         	foreach(SupportQuestion::get() as $qs) {
         		$all_questions[] = [
@@ -74,6 +74,8 @@ class IndexController extends FrontController {
 		if(Request::isMethod('post')) {
 
 			if(!empty($this->user)) {
+				
+				//check for already sended ticket without admin answer
 				$curl = curl_init();
 				curl_setopt_array($curl, array(
 					CURLOPT_RETURNTRANSFER => 1,
@@ -140,7 +142,6 @@ class IndexController extends FrontController {
             	}
 				
 				$language = LanguageDetector::detect(Request::input('description'));
-				// dd($language);
 				if($language == 'es') {
 					return Response::json( [
 	                	'success' => false,
@@ -164,7 +165,6 @@ class IndexController extends FrontController {
 				curl_close($ch);
 
 				if($response) {
-					Log::error($response);
 					$api_response = json_decode($response, true);
 					if(!empty($api_response['success'])) {
 						$captcha = true;
@@ -239,7 +239,7 @@ class IndexController extends FrontController {
 				
 				return Response::json( [
 					'success' => isset($result->success) ? true : false,
-				] );
+				]);
             }
 		}
 
@@ -262,14 +262,6 @@ class IndexController extends FrontController {
         }
      
         return $result;
-    }
-
-	private function getFilePath($thumb = false) {
-        $folder = storage_path().'/app/public/support-contact/'.($this->id%100);
-        if(!is_dir($folder)) {
-            mkdir($folder);
-        }
-        return $folder.'/'.$this->id.($thumb ? '-thumb' : '').'.jpg';
     }
 
 	public function question($locale=null, $slug) {

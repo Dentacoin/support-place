@@ -4,15 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\FrontController;
 
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 use Validator;
 use Response;
-use Session;
-use Auth;
-use Lang;
 
 class AuthenticateUser extends FrontController {
 

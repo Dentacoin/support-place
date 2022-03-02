@@ -2,19 +2,17 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
 use Illuminate\Support\Facades\Auth;
+use Closure;
 
 class AuthenticateUser {
 
-    public function handle($request, Closure $next)
-    {
+    public function handle($request, Closure $next) {
         if (Auth::guard('web')->guest()) {
             if ($request->ajax() || $request->wantsJson()) {
                 return response('Unauthorized.', 401);
             } else {
                 return redirect('login');
-                
             }
         }
 

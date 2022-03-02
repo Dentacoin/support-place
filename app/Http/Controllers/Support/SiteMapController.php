@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Support;
 
 use App\Http\Controllers\FrontController;
 
-use App\Models\SupportCategory;
 use App\Models\SupportQuestion;
 
 class SiteMapController extends FrontController {
@@ -53,5 +52,4 @@ class SiteMapController extends FrontController {
 
 		return response($content, 200)->header('Content-Type', 'application/xml');
 	}
-
 }
