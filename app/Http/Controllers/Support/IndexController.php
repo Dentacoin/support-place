@@ -8,6 +8,8 @@ use LanguageDetector\LanguageDetector;
 use App\Models\SupportCategory;
 use App\Models\SupportQuestion;
 
+use App\Helpers\GeneralHelper;
+
 use Validator;
 use Response;
 use Request;
@@ -125,6 +127,26 @@ class IndexController extends FrontController {
 
                 return Response::json( $ret );
             } else {
+
+				$allowedMimetypes = [
+                    'image/jpeg', 
+                    'image/png', 
+                    'video/mp4', 
+                    'audio/x-mpegurl', 
+                    'video/vnd.dlna.mpeg-tts', 
+                    'video/quicktime', 
+                    'video/x-msvideo', 
+                    'video/x-ms-wmv', 
+                    'video/quicktime'
+                ];
+
+				$checkFile = GeneralHelper::checkFile(Request::file('file'), $all_ext, $allowedMimetypes);
+
+				if(isset($checkFile['error'])) {
+					return Response::json( [
+	                	'success' => false,
+	                ]);
+				}
 
             	if(empty($this->user) && Request::input('issue') != 'login') {
 
