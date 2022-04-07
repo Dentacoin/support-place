@@ -50,23 +50,6 @@ class GeneralHelper {
             }
         }
 
-        $img = Image::make( $file )->orientate();
-
-        //checking if file has height & width
-        if ($img->height() > 1 && $img->width() > 1) {
-        } else {
-            return [
-                'error' => 'There is error with one or more of the files, please try with other files. Please try again.'
-            ];
-        }
-
-        //checking file mimetype
-        if (!in_array($img->mime(), $allowedMimetypes)) {
-            return [
-                'error' => 'Files can be only with '.implode(', .', $allowedExtensions).' formats. Please try again.'
-            ];
-        }
-
         return [
             'success' => true
         ];
