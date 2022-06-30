@@ -29,7 +29,7 @@ $supportRoutes = function () {
 	
 	Route::group(['prefix' => '{locale?}'], function(){
 		Route::any('/', 									[IndexController::class, 'index']);
-		Route::any('contact', 								[IndexController::class, 'contact']);
+		// Route::any('contact', 								[IndexController::class, 'contact']);
 		Route::any('question/{slug}', 						[IndexController::class, 'question']);
 
 		Route::get('page-not-found', 						[NotFoundController::class, 'home']);

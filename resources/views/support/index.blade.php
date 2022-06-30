@@ -22,10 +22,10 @@
         'current_question' => null,
     ])
 
-	<div class="contact-wrapper container">
+	{{-- <div class="contact-wrapper container">
 		<h2>Can’t find an answer to your question?</h2>
 		<a href="{{ getLangUrl('contact') }}">Contact support</a>
-	</div>
+	</div> --}}
 
 	<script type="text/javascript">
 		var questions = JSON.parse('{!! $all_questions !!}');

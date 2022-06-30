@@ -790,6 +790,7 @@ header {
 
 		.container {
 			z-index: auto;
+			width: 1000px;
 
 			@media #{$tablet} {
 				// width: 840px;
@@ -823,6 +824,14 @@ header {
 	}
 
 	.categories-questions {
+		width: 1000px;
+		
+		@media screen and (max-width: 1010px) {
+			width: 100%;
+			padding-left: 10px;
+    		padding-right: 10px;
+		}
+
 		.category-questions {
 			display: none;
 			background: white;

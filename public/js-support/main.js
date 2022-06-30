@@ -148,7 +148,7 @@ jQuery(document).ready(function($){
         scrollableElement.css('width', total + parseFloat(scrollableElement.css('padding-left')) + parseFloat(scrollableElement.css('padding-right')) + 60);
     }
 
-    if($(window).outerWidth() <= 998) {
+    if($(window).outerWidth() <= 1010) {
         setTimeout(handleHorizontalScrolls , 10);
     }
 

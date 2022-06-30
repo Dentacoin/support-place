@@ -600,7 +600,8 @@ header {
       .topics-wrapper .categories-wrapper .flex {
         display: block; } }
     .topics-wrapper .categories-wrapper .container {
-      z-index: auto; }
+      z-index: auto;
+      width: 1000px; }
       @media screen and (max-width: 998px) {
         .topics-wrapper .categories-wrapper .container {
           padding-left: 50px; } }
@@ -620,49 +621,56 @@ header {
       .topics-wrapper .categories-wrapper .category:hover, .topics-wrapper .categories-wrapper .category:focus {
         color: black;
         transition: all 0.2s ease; }
-  .topics-wrapper .categories-questions .category-questions {
-    display: none;
-    background: white;
-    padding-top: 25px; }
-    .topics-wrapper .categories-questions .category-questions.active {
-      display: block; }
-    .topics-wrapper .categories-questions .category-questions .question {
-      position: relative;
-      display: block;
-      font-size: 18px;
-      font-weight: bold;
-      color: #333333;
-      padding: 12px 30px 12px 36px;
-      margin: 2px 0px;
-      transition: all 0.2s ease; }
-      @media screen and (max-width: 768px) {
-        .topics-wrapper .categories-questions .category-questions .question {
-          font-size: 20px; } }
-      .topics-wrapper .categories-questions .category-questions .question:hover {
-        transition: all 0.2s ease;
-        color: #00aeef; }
-      .topics-wrapper .categories-questions .category-questions .question::before {
-        content: "";
-        position: absolute;
-        left: 0px;
-        width: 22px;
-        height: 22px;
-        border-radius: 50%;
-        background-color: #00b0e9;
-        top: 50%;
-        transform: translateY(-50%); }
+  .topics-wrapper .categories-questions {
+    width: 1000px; }
+    @media screen and (max-width: 1010px) {
+      .topics-wrapper .categories-questions {
+        width: 100%;
+        padding-left: 10px;
+        padding-right: 10px; } }
+    .topics-wrapper .categories-questions .category-questions {
+      display: none;
+      background: white;
+      padding-top: 25px; }
+      .topics-wrapper .categories-questions .category-questions.active {
+        display: block; }
+      .topics-wrapper .categories-questions .category-questions .question {
+        position: relative;
+        display: block;
+        font-size: 18px;
+        font-weight: bold;
+        color: #333333;
+        padding: 12px 30px 12px 36px;
+        margin: 2px 0px;
+        transition: all 0.2s ease; }
         @media screen and (max-width: 768px) {
-          .topics-wrapper .categories-questions .category-questions .question::before {
-            top: 14px;
-            transform: none; } }
-      .topics-wrapper .categories-questions .category-questions .question.disabled {
-        color: #aaaaaa; }
-      .topics-wrapper .categories-questions .category-questions .question .arrow {
-        max-width: 12px;
-        position: absolute;
-        right: 0px;
-        top: 50%;
-        transform: translateY(-50%); }
+          .topics-wrapper .categories-questions .category-questions .question {
+            font-size: 20px; } }
+        .topics-wrapper .categories-questions .category-questions .question:hover {
+          transition: all 0.2s ease;
+          color: #00aeef; }
+        .topics-wrapper .categories-questions .category-questions .question::before {
+          content: "";
+          position: absolute;
+          left: 0px;
+          width: 22px;
+          height: 22px;
+          border-radius: 50%;
+          background-color: #00b0e9;
+          top: 50%;
+          transform: translateY(-50%); }
+          @media screen and (max-width: 768px) {
+            .topics-wrapper .categories-questions .category-questions .question::before {
+              top: 14px;
+              transform: none; } }
+        .topics-wrapper .categories-questions .category-questions .question.disabled {
+          color: #aaaaaa; }
+        .topics-wrapper .categories-questions .category-questions .question .arrow {
+          max-width: 12px;
+          position: absolute;
+          right: 0px;
+          top: 50%;
+          transform: translateY(-50%); }
 
 .contact-wrapper {
   text-align: center;

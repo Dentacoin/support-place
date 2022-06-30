@@ -10,7 +10,7 @@
 			<div class="question-content">
 				{!! $question->content !!}
 				<br/>
-				<p>If you require further assistance, please <a href="{{ getLangUrl('contact') }}">contact our support team</a>.&nbsp;</p>
+				{{-- <p>If you require further assistance, please <a href="{{ getLangUrl('contact') }}">contact our support team</a>.&nbsp;</p> --}}
 			</div>
 		</div>
 	</div>
